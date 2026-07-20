@@ -59,7 +59,7 @@ window.STORIES = [
   {
     id: "ccuintel",
     file: "story-06-ccuintel.html",
-    title: "CCU Intelligence: Document Assembly Line",
+    title: "CCU Intelligence: The Document Assembly Line",
     author: "Ather / Prabal",
     section: "FlowAI",
     dateAdded: "2026-07-20",
