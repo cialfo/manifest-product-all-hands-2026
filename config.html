@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configure Agenda — Product All Hands April 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,400;1,700&family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+    <script src="stories-index.js"></script>
+  </head>
+  <body class="min-h-screen bg-neutral-900 text-white/90 font-[Montserrat,sans-serif]">
+    <div class="mx-auto max-w-5xl px-6 py-8">
+      <header class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 class="text-sm font-bold text-white">Configure Agenda</h1>
+          <p class="mt-1 text-xs text-white/50">
+            Drag the <span class="font-mono text-white/70">&#8942;&#8942;</span> handle to reorder.
+            Uncheck to exclude. Saves to this browser automatically.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="reset-btn"
+            type="button"
+            class="rounded border border-white/15 bg-black/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70 transition hover:border-red-500/60 hover:text-white"
+          >
+            Reset
+          </button>
+          <a
+            href="index.html"
+            class="rounded border border-red-500/60 bg-red-600/20 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-red-600/30"
+          >
+            Open Deck &rarr;
+          </a>
+        </div>
+      </header>
+
+      <div
+        class="overflow-hidden rounded-lg border border-white/10 bg-neutral-800/70 backdrop-blur"
+      >
+        <table class="w-full text-sm">
+          <thead class="bg-white/5 text-[10px] uppercase tracking-[0.18em] text-white/50">
+            <tr>
+              <th class="px-3 py-3 text-left font-semibold"></th>
+              <th class="px-3 py-3 text-left font-semibold">Include</th>
+              <th class="px-3 py-3 text-left font-semibold">#</th>
+              <th class="px-3 py-3 text-left font-semibold">Title</th>
+              <th class="px-3 py-3 text-left font-semibold">Author</th>
+              <th class="px-3 py-3 text-left font-semibold">Section</th>
+              <th class="px-3 py-3 text-left font-semibold">Added</th>
+              <th class="px-3 py-3 text-left font-semibold">Updated</th>
+            </tr>
+          </thead>
+          <tbody id="story-rows" class="divide-y divide-white/5"></tbody>
+        </table>
+      </div>
+
+      <div id="summary" class="mt-4 text-xs text-white/50"></div>
+    </div>
+
+    <template id="row-template">
+      <tr class="group story-row hover:bg-white/5" data-story-id="">
+        <td class="w-10 px-3 py-3 align-middle">
+          <span
+            class="drag-handle block cursor-grab select-none text-white/40 transition hover:text-white/80"
+            title="Drag to reorder"
+            >&#8942;&#8942;</span
+          >
+        </td>
+        <td class="w-24 px-3 py-3 align-middle">
+          <label class="inline-flex cursor-pointer items-center gap-2">
+            <input
+              type="checkbox"
+              class="enabled-toggle h-4 w-4 cursor-pointer accent-red-600"
+              checked
+            />
+            <span class="enabled-label text-[10px] uppercase tracking-[0.18em] text-white/60"
+              >On</span
+            >
+          </label>
+        </td>
+        <td class="w-10 px-3 py-3 align-middle font-mono text-xs text-white/40">
+          <span class="display-num">01</span>
+        </td>
+        <td class="px-3 py-3 align-middle">
+          <div class="title font-medium text-white/90"></div>
+          <a
+            class="file mt-0.5 inline-block text-[10px] uppercase tracking-[0.12em] text-white/40 hover:text-white/70"
+            target="_blank"
+            rel="noopener"
+          ></a>
+        </td>
+        <td class="author px-3 py-3 align-middle text-white/70"></td>
+        <td
+          class="section px-3 py-3 align-middle text-xs uppercase tracking-[0.14em] text-[#cc0000]"
+        ></td>
+        <td class="date-added px-3 py-3 align-middle font-mono text-xs text-white/50"></td>
+        <td class="date-updated px-3 py-3 align-middle font-mono text-xs text-white/50"></td>
+      </tr>
+    </template>
+
+    <script>
+      // ── LOCK SWITCH ──────────────────────────────────────────────
+      // Set to false to restore full editing. One line to revert.
+      const LOCKED = false;
+      const LOCKED_ORDER = ["salesintel","appintel","platmigration","accountintel","bridgeuds"];
+      // ─────────────────────────────────────────────────────────────
+
+      (function initConfigPage() {
+        if (!window.AH26 || !window.STORIES) return;
+
+        // When locked, overwrite localStorage with the fixed agenda.
+        if (LOCKED) {
+          const allIds = window.STORIES.map((s) => s.id);
+          const enabled = {};
+          allIds.forEach((id) => { enabled[id] = LOCKED_ORDER.includes(id); });
+          window.AH26.saveConfig({ order: LOCKED_ORDER, enabled });
+        }
+
+        const tbody = document.getElementById("story-rows");
+        const tmpl = document.getElementById("row-template");
+        const summary = document.getElementById("summary");
+        const resetBtn = document.getElementById("reset-btn");
+
+        const config = window.AH26.loadConfig();
+
+        // Render rows in saved order.
+        function render() {
+          tbody.innerHTML = "";
+          config.order.forEach((id) => {
+            const story = window.AH26.findStory(id);
+            if (!story) return;
+            const row = tmpl.content.firstElementChild.cloneNode(true);
+            row.dataset.storyId = id;
+            row.querySelector(".title").textContent = story.title;
+            const fileLink = row.querySelector(".file");
+            fileLink.textContent = story.file;
+            fileLink.href = story.file;
+            row.querySelector(".author").textContent = story.author;
+            row.querySelector(".section").textContent = story.section;
+            row.querySelector(".date-added").textContent = window.AH26.formatDate(story.dateAdded);
+            row.querySelector(".date-updated").textContent = window.AH26.formatDate(
+              story.dateUpdated
+            );
+            const cb = row.querySelector(".enabled-toggle");
+            cb.checked = !!config.enabled[id];
+            syncRow(row, cb.checked);
+            cb.addEventListener("change", () => {
+              config.enabled[id] = cb.checked;
+              syncRow(row, cb.checked);
+              persist();
+            });
+            tbody.appendChild(row);
+          });
+          renumber();
+          updateSummary();
+        }
+
+        function syncRow(row, on) {
+          row.classList.toggle("opacity-40", !on);
+          const lbl = row.querySelector(".enabled-label");
+          if (lbl) lbl.textContent = on ? "On" : "Off";
+        }
+
+        // Renumber the "#" column based on only the enabled rows, in current DOM order.
+        function renumber() {
+          let n = 1;
+          tbody.querySelectorAll("tr.story-row").forEach((row) => {
+            const id = row.dataset.storyId;
+            const numEl = row.querySelector(".display-num");
+            if (config.enabled[id]) {
+              numEl.textContent = String(n).padStart(2, "0");
+              numEl.classList.remove("opacity-0");
+              n++;
+            } else {
+              numEl.textContent = "--";
+              numEl.classList.add("opacity-60");
+            }
+          });
+        }
+
+        function updateSummary() {
+          const on = config.order.filter((id) => config.enabled[id]).length;
+          const total = config.order.length;
+          summary.textContent = `${on} of ${total} stories will be presented.`;
+        }
+
+        function persist() {
+          window.AH26.saveConfig({ order: config.order, enabled: config.enabled });
+          renumber();
+          updateSummary();
+        }
+
+        // Initial render.
+        render();
+
+        if (LOCKED) {
+          // Freeze all interactive elements.
+          resetBtn.disabled = true;
+          resetBtn.style.opacity = "0.3";
+          resetBtn.style.cursor = "not-allowed";
+          resetBtn.style.pointerEvents = "none";
+          tbody.querySelectorAll(".drag-handle").forEach((el) => {
+            el.style.cursor = "not-allowed";
+            el.style.opacity = "0.2";
+            el.style.pointerEvents = "none";
+          });
+          tbody.querySelectorAll(".enabled-toggle").forEach((el) => {
+            el.disabled = true;
+            el.style.cursor = "not-allowed";
+            el.closest("label").style.cursor = "not-allowed";
+          });
+          // Show locked banner.
+          const banner = document.createElement("p");
+          banner.textContent = "Agenda is locked for this presentation.";
+          banner.style.cssText =
+            "margin-top:10px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-align:center;";
+          document.getElementById("summary").replaceWith(banner);
+        } else {
+          // Drag-to-reorder.
+          Sortable.create(tbody, {
+            handle: ".drag-handle",
+            animation: 150,
+            ghostClass: "opacity-30",
+            onEnd: () => {
+              const newOrder = Array.from(tbody.querySelectorAll("tr.story-row")).map(
+                (r) => r.dataset.storyId
+              );
+              config.order = newOrder;
+              persist();
+            },
+          });
+
+          // Reset.
+          resetBtn.addEventListener("click", () => {
+            if (!confirm("Reset to default order and include every story?")) return;
+            window.AH26.resetConfig();
+            const fresh = window.AH26.loadConfig();
+            config.order = fresh.order;
+            config.enabled = fresh.enabled;
+            render();
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

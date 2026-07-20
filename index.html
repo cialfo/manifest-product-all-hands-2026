@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product All Hands — July 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,400;1,700&family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      try {
+        if (localStorage.getItem("ah26_theme") === "light")
+          document.documentElement.classList.add("theme-light");
+      } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="bg">
+      <div class="dots"></div>
+    </div>
+    <div id="progress"></div>
+    <div id="stage">
+      <!-- SLIDE 0: TITLE -->
+      <div class="slide active">
+        <div
+          class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden"
+        >
+          <div class="dots"></div>
+          <div class="s1-content">
+            <div
+              class="mg-frame"
+              style="display: inline-flex; align-items: center; justify-content: center; padding: 2rem;"
+            >
+              <img
+                src="Assets/Manifest-Global--Horizontal-Logo-SVG.png"
+                alt="Manifest Global"
+                style="width: 680px; height: auto; display: block"
+              />
+            </div>
+            <div class="s1-bottom">
+              <div class="s1-label">Product All Hands</div>
+              <div class="s1-divider"></div>
+              <div class="s1-date">July 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 1: AGENDA -->
+      <div class="slide" id="agenda">
+        <div
+          class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden"
+          id="slide-agenda"
+        >
+          <div class="dots"></div>
+          <div class="ag-header">
+            <div class="ag-title">What We&#39;re <em>Building</em></div>
+            <div class="ag-rule"></div>
+          </div>
+          <div class="ag-grid-v2" id="ag-grid">
+            <!-- populated by inline script at bottom of file -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end #stage -->
+
+    <button id="home-link" type="button" aria-label="Home">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 11.5 12 4l9 7.5" />
+        <path d="M6 10.5V20h12v-9.5" />
+        <path d="M9.5 20v-6h5v6" />
+      </svg>
+    </button>
+    <div id="slide-count"></div>
+    <div id="hint">&#8592; &#8594; arrow keys to navigate</div>
+
+    <a href="config.html" id="edit-btn" title="Configure agenda" aria-label="Configure agenda"
+      >&#9881;</a
+    >
+
+    <script src="stories-index.js"></script>
+    <script src="app.js"></script>
+    <script>
+      // Render the agenda grid from window.STORIES + saved config.
+      // Stories appear in the user's configured order; section labels are
+      // emitted whenever the section changes within that order.
+      (function renderAgenda() {
+        const grid = document.getElementById("ag-grid");
+        if (!grid || !window.AH26) return;
+
+        const config = window.AH26.loadConfig();
+        const enabledIds = window.AH26.enabledInOrder(config);
+
+        const esc = (s) =>
+          String(s).replace(
+            /[&<>"']/g,
+            (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
+          );
+
+        // Wrap standalone 4-digit years in s1-date style (Montserrat, bold, accent)
+        const titleHtml = (s) =>
+          esc(s).replace(/\b(20\d{2})\b/g, '<span style="font-variant-numeric:lining-nums">$1</span>');
+
+        const parts = [];
+        let displayNum = 1;
+        for (const id of enabledIds) {
+          const story = window.AH26.findStory(id);
+          if (!story) continue;
+          const num = String(displayNum).padStart(2, "0");
+          parts.push(
+            `<a class="ag-link" href="${esc(story.file)}" data-topic="${esc(id)}">` +
+              `<div class="ag-card">` +
+              `<div class="ag-num">${num}</div>` +
+              `<div class="ag-name">${titleHtml(story.title)}</div>` +
+              `<div class="ag-speaker">${esc(story.author)}</div>` +
+              `</div></a>`
+          );
+          displayNum++;
+        }
+        grid.innerHTML = parts.join("");
+      })();
+
+      if (location.hash === "#agenda" && typeof goTo === "function") {
+        goTo(1);
+      }
+    </script>
+  </body>
+</html>
