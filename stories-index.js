@@ -76,7 +76,7 @@ const AH26_LOCKED_ORDER = [];
 // Helpers available everywhere stories-index.js is loaded.
 window.AH26 = window.AH26 || {};
 
-window.AH26.LOCALSTORAGE_KEY = "ah26_agenda";
+window.AH26.LOCALSTORAGE_KEY = "ah26_agenda_aug";
 
 // Read the user's saved config, filling in defaults from STORIES.
 window.AH26.loadConfig = function () {
