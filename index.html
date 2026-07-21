@@ -104,7 +104,9 @@
 
         // Wrap standalone 4-digit years in s1-date style (Montserrat, bold, accent)
         const titleHtml = (s) =>
-          esc(s).replace(/\b(20\d{2})\b/g, '<span style="font-variant-numeric:lining-nums">$1</span>');
+          esc(s)
+            .replace(/\b(20\d{2})\b/g, '<span style="font-variant-numeric:lining-nums">$1</span>')
+            .replace(/: /g, ':<br>');
 
         const parts = [];
         let displayNum = 1;
