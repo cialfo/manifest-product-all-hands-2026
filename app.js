@@ -444,6 +444,15 @@
       Anjali: "Anjali.png",
       Payal: "Payal.png",
       Vivek: "Vivek-Thakur.png",
+      Maitreyi: "Maitreyi.png",
+      Palak: "Palak.png",
+      Sanchita: "Sanchita.png",
+      Tanzeem: "Tanzeem.png",
+      Trisha: "Trisha.png",
+      Vanessa: "Vanessa.png",
+      "Jyoti Ram": "Jyoti Ram.png",
+      Akanksha: "akanksha-gupta.png",
+      "Akanksha Gupta": "akanksha-gupta.png",
     };
 
     const HOVER_FLAVORS = ["hover-zoom"];
