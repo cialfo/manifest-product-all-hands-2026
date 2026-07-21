@@ -453,6 +453,10 @@
       "Jyoti Ram": "Jyoti Ram.png",
       Akanksha: "akanksha-gupta.png",
       "Akanksha Gupta": "akanksha-gupta.png",
+      Yashank: "Yashank.png",
+      "Yashank Srivastava": "Yashank.png",
+      Ashish: "Ashish.png",
+      "Ashish Kumar": "Ashish.png",
     };
 
     const HOVER_FLAVORS = ["hover-zoom"];
