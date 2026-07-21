@@ -446,7 +446,7 @@
       Vivek: "Vivek-Thakur.png",
     };
 
-    const HOVER_FLAVORS = ["hover-wiggle", "hover-jump", "hover-dodge", "hover-lift", "hover-spin"];
+    const HOVER_FLAVORS = ["hover-zoom"];
     const MODES = ["slide-left", "shuffle-right", "dance", "explode", "hide-from-mouse"];
 
     const names = JSON.parse(grid.getAttribute("data-people") || "[]");
@@ -454,7 +454,7 @@
       const card = document.createElement("div");
       const flavor = HOVER_FLAVORS[(Math.random() * HOVER_FLAVORS.length) | 0];
       card.className = "polaroid " + flavor;
-      card.style.setProperty("--tilt", (Math.random() * 10 - 5).toFixed(2) + "deg");
+      card.style.setProperty("--tilt", "0deg");
       card.style.setProperty("--i", i);
 
       const photoFile = PEOPLE_PHOTOS[name];

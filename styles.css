@@ -1271,6 +1271,11 @@ html.theme-light .polaroid {
 }
 
 /* ── Hover personalities (assigned per-card via JS class) ── */
+.polaroid.hover-zoom:hover {
+  transform: scale(1.12);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+  z-index: 5;
+}
 .polaroid.hover-wiggle:hover {
   animation: pWiggle 0.5s ease-in-out infinite;
 }
