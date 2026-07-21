@@ -23,7 +23,7 @@ window.STORIES = [
   {
     id: "uniprofile",
     file: "story-02-uniprofile.html",
-    title: "University Profile. Redefined",
+    title: "University Profile Redefined",
     author: "Charles David",
     section: "Cialfo",
     dateAdded: "2026-07-20",
