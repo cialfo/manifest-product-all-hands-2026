@@ -29,15 +29,7 @@ window.STORIES = [
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
   },
-  {
-    id: "k12health",
-    file: "story-03-k12health.html",
-    title: "K12 Health Monitor",
-    author: "Rajat Khanna",
-    section: "Cialfo",
-    dateAdded: "2026-07-20",
-    dateUpdated: "2026-07-20",
-  },
+  // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
     id: "bridgeudocs",
     file: "story-04-bridgeudocs.html",
