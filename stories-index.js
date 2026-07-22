@@ -41,7 +41,7 @@ window.STORIES = [
   {
     id: "bridgeudocs",
     file: "story-04-bridgeudocs.html",
-    title: "BridgeU Document Sending",
+    title: "BridgeU Document Management",
     author: "Bilal Ibrahim",
     section: "BridgeU",
     dateAdded: "2026-07-20",
