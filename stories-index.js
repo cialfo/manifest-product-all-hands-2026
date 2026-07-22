@@ -65,6 +65,15 @@ window.STORIES = [
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
   },
+  {
+    id: "desktopapp",
+    file: "story-07-desktopapp.html",
+    title: "Cialfo Desktop App",
+    author: "Hitendra Kumar",
+    section: "Cialfo",
+    dateAdded: "2026-07-22",
+    dateUpdated: "2026-07-22",
+  },
 ];
 
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────

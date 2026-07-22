@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cialfo Desktop App — Product All Hands August 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,400;1,700&family=Literata:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      try {
+        if (localStorage.getItem("ah26_theme") === "light")
+          document.documentElement.classList.add("theme-light");
+      } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .stat-before, .stat-card-foot { font-family: "Literata", Georgia, serif !important; }
+      .stat-card-foot { color: var(--text-primary) !important; }
+      .stat-after-unit { color: var(--text-primary) !important; }
+      .stat-board-footnote { color: var(--text-primary) !important; }
+    </style>
+    <script type="application/json" id="story-meta">
+      {
+        "id": "desktopapp",
+        "title": "Cialfo Desktop App",
+        "author": "Hitendra Kumar",
+        "section": "Cialfo",
+        "dateAdded": "2026-07-22",
+        "dateUpdated": "2026-07-22"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="bg"><div class="dots"></div></div>
+    <div id="progress"></div>
+
+    <div id="stage">
+
+      <!-- SLIDE 1: DIVIDER -->
+      <div class="slide active">
+        <div class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="dots"></div>
+          <div class="divider-content">
+            <div class="divider-frame">
+              <div class="divider-title">
+                <span style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; color: var(--accent); font-size: 1.12em;">Cialfo Desktop App<br><span style="font-size: 0.88em; white-space: nowrap;">First Look on macOS</span></span><br />
+                <em style="color: #000000; font-size: 0.9em; white-space: nowrap; font-weight: 700;">Cialfo On The Counselor's Desktop</em>
+              </div>
+              <div class="rule"></div>
+            </div>
+            <div class="divider-line">
+              &#8220;The best tool is the one that&#8217;s already open. Now Cialfo <em>is</em>.&#8221;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: LIVE DEMO -->
+      <div class="slide">
+        <div class="w-full h-full flex flex-col">
+          <div class="hbar">
+            <span class="hbar-title">Cialfo Desktop App</span>
+            <div class="mgb"><span class="ml1">Cialfo</span><span class="ml2">Desktop App</span></div>
+          </div>
+          <div class="inner">
+            <div class="dots"></div>
+            <div class="play-zone">
+              <div class="corner tl"></div>
+              <div class="corner tr"></div>
+              <div class="corner bl"></div>
+              <div class="corner br"></div>
+              <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                <div class="live-link-btn" style="cursor: default; pointer-events: none;">
+                  <svg style="width: 22px; height: 22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                  </svg>
+                  Live Demo
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: STATS BOARD -->
+      <div class="slide">
+        <div class="w-full h-full flex flex-col">
+          <div class="hbar">
+            <span class="hbar-title">Cialfo Desktop App</span>
+            <div class="mgb"><span class="ml1">Cialfo</span><span class="ml2">Desktop App</span></div>
+          </div>
+          <div class="inner">
+            <div class="dots"></div>
+            <div class="play-zone stat-board">
+              <div class="corner tl"></div>
+              <div class="corner tr"></div>
+              <div class="corner bl"></div>
+              <div class="corner br"></div>
+              <div class="stat-board-header">
+                <div class="stat-board-title">Native. Lightweight. <em>Built for counselors.</em></div>
+              </div>
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-card-label">Where It Lives</div>
+                  <div class="stat-card-row">
+                    <span class="stat-before">Browser tab</span>
+                    <span class="stat-arrow">&rarr;</span>
+                    <span class="stat-after" style="font-family: 'Literata', Georgia, serif">Native macOS</span>
+                  </div>
+                  <div class="stat-card-foot">On the desktop, always in reach</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-card-label">Launch Time</div>
+                  <div class="stat-card-row stat-card-row-text">
+                    <span class="stat-after stat-after-wide" style="font-family: 'Literata', Georgia, serif">Instant</span>
+                  </div>
+                  <div class="stat-card-foot">Quick to open, easy to keep around all day</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-card-label">Counselor Workflow</div>
+                  <div class="stat-card-row">
+                    <span class="stat-before">Switch to browser</span>
+                    <span class="stat-arrow">&rarr;</span>
+                    <span class="stat-after" style="font-family: 'Literata', Georgia, serif">Already open</span>
+                  </div>
+                  <div class="stat-card-foot">Built to fit the day, not interrupt it</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-card-label">What This Is</div>
+                  <div class="stat-card-row stat-card-row-text">
+                    <span class="stat-after stat-after-wide" style="font-family: 'Literata', Georgia, serif">First look</span>
+                  </div>
+                  <div class="stat-card-foot">First step towards a full companion experience</div>
+                </div>
+              </div>
+              <div class="stat-board-footnote">
+                &#9889; Not another tab to open. A tool that&#8217;s already there.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: PEOPLE -->
+      <div class="slide">
+        <div class="w-full h-full flex flex-col">
+          <div class="hbar">
+            <span class="hbar-title">Cialfo Desktop App</span>
+            <div class="mgb"><span class="ml1">Cialfo</span><span class="ml2">Desktop App</span></div>
+          </div>
+          <div class="inner">
+            <div class="dots"></div>
+            <div class="people-slide">
+              <div class="people-label">Celebrating our people</div>
+              <div class="people-grid" data-people='["Hitendra"]'></div>
+              <div class="people-shuffle-wrap">
+                <button class="people-shuffle-btn" type="button">Shuffle the wall</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="slide-count"></div>
+    <div id="hint">&#8592; &#8594; arrow keys to navigate</div>
+    <script src="stories-index.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
