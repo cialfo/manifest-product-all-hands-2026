@@ -42,7 +42,7 @@ window.STORIES = [
     id: "bridgeudocs",
     file: "story-04-bridgeudocs.html",
     title: "BridgeU Document Management",
-    author: "Bilal Ibrahim",
+    author: "Khushboo Singh",
     section: "BridgeU",
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
