@@ -12,6 +12,15 @@
 
 window.STORIES = [
   {
+    id: "exploredata",
+    file: "story-05-exploredata.html",
+    title: "Explore Data Product",
+    author: "Charles David",
+    section: "Explore",
+    dateAdded: "2026-07-20",
+    dateUpdated: "2026-07-20",
+  },
+  {
     id: "directapply",
     file: "story-01-directapply.html",
     title: "Direct Apply Applicant Experience",
@@ -29,7 +38,6 @@ window.STORIES = [
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
   },
-  // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
     id: "bridgeudocs",
     file: "story-04-bridgeudocs.html",
@@ -39,15 +47,7 @@ window.STORIES = [
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
   },
-  {
-    id: "exploredata",
-    file: "story-05-exploredata.html",
-    title: "Explore Data Product",
-    author: "Charles David",
-    section: "Explore",
-    dateAdded: "2026-07-20",
-    dateUpdated: "2026-07-20",
-  },
+  // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
     id: "ccuintel",
     file: "story-06-ccuintel.html",
