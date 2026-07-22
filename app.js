@@ -459,6 +459,7 @@
       "Ashish Kumar": "Ashish.png",
       Nandini: "Nandini.png",
       Carlo: "Carlo.png",
+      Somraj: "Somraj.png",
     };
 
     const HOVER_FLAVORS = ["hover-zoom"];
