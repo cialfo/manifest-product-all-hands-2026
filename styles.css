@@ -418,7 +418,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 150px;
+  min-height: 180px;
   justify-content: center;
 }
 #slide-agenda .ag-card:hover {
