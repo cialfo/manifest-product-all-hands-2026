@@ -12,15 +12,6 @@
 
 window.STORIES = [
   {
-    id: "exploredata",
-    file: "story-05-exploredata.html",
-    title: "Explore Data Product",
-    author: "Charles David",
-    section: "Explore",
-    dateAdded: "2026-07-20",
-    dateUpdated: "2026-07-20",
-  },
-  {
     id: "directapply",
     file: "story-01-directapply.html",
     title: "Direct Apply Applicant Experience",
@@ -47,6 +38,15 @@ window.STORIES = [
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
   },
+  {
+    id: "exploredata",
+    file: "story-05-exploredata.html",
+    title: "Explore Data Product",
+    author: "Charles David",
+    section: "Explore",
+    dateAdded: "2026-07-20",
+    dateUpdated: "2026-07-20",
+  },
   // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
     id: "ccuintel",
@@ -70,8 +70,8 @@ window.STORIES = [
 
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
-const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = [];
+const AH26_LOCKED = true;
+const AH26_LOCKED_ORDER = ["directapply", "uniprofile", "bridgeudocs", "exploredata", "desktopapp"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
