@@ -98,7 +98,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = true;
-const AH26_LOCKED_ORDER = ["directapply", "uniprofile", "bridgeudocs", "exploredata", "desktopapp", "cowork", "ccuintel"];
+const AH26_LOCKED_ORDER = ["directapply", "uniprofile", "bridgeudocs", "exploredata", "desktopapp"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
