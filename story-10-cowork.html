@@ -19,7 +19,17 @@
       .stat-card-foot { color: var(--text-primary) !important; }
       .stat-after-unit { color: var(--text-primary) !important; }
       .stat-board-footnote { color: var(--text-primary) !important; }
-      .polaroid { width: 148px; }
+      .polaroid { width: 163px; }
+      .people-grid {
+        display: grid !important;
+        grid-template-columns: repeat(12, 1fr) !important;
+        max-width: 740px;
+        margin: 0 auto;
+        gap: 18px;
+        justify-items: center;
+      }
+      .people-grid .polaroid:nth-child(-n+3) { grid-column: span 4; }
+      .people-grid .polaroid:nth-child(n+4)  { grid-column: span 3; }
     </style>
     <script type="application/json" id="story-meta">
       {
@@ -156,7 +166,7 @@
             <div class="dots"></div>
             <div class="people-slide">
               <div class="people-label">Celebrating our people</div>
-              <div class="people-grid" data-people='["Vidhu", "Haseeb", "Vaibhav", "Hitendra", "Teresa", "Dorothy", "Khushnuma"]'></div>
+              <div class="people-grid" data-people='["Hitendra", "Vidhu", "Haseeb", "Vaibhav", "Teresa", "Dorothy", "Khushnuma"]'></div>
               <div class="people-shuffle-wrap">
                 <button class="people-shuffle-btn" type="button">Shuffle the wall</button>
               </div>
