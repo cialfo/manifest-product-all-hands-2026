@@ -77,6 +77,15 @@ window.STORIES = [
     comingSoon: true,
   },
   {
+    id: "studentmgmt",
+    file: "story-12-studentmgmt.html",
+    title: "FlowAI: Student Management & Partner Hubs",
+    author: "Prabal Malhan",
+    section: "FlowAI",
+    dateAdded: "2026-08-20",
+    dateUpdated: "2026-08-20",
+  },
+  {
     id: "flowai",
     file: "story-11-flowai.html",
     title: "FlowAI Application Intelligence",
