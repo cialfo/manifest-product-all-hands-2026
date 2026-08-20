@@ -77,6 +77,15 @@ window.STORIES = [
     comingSoon: true,
   },
   {
+    id: "saige",
+    file: "story-13-saige.html",
+    title: "Saige Founders Internship",
+    author: "Sanchita K",
+    section: "Cialfo",
+    dateAdded: "2026-08-20",
+    dateUpdated: "2026-08-20",
+  },
+  {
     id: "studentmgmt",
     file: "story-12-studentmgmt.html",
     title: "Student Management & Hubs",
