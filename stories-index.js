@@ -79,7 +79,7 @@ window.STORIES = [
   {
     id: "studentmgmt",
     file: "story-12-studentmgmt.html",
-    title: "FlowAI: Student Management & Partner Hubs",
+    title: "Student Management & Partner Hubs",
     author: "Prabal Malhan",
     section: "FlowAI",
     dateAdded: "2026-08-20",
@@ -93,6 +93,7 @@ window.STORIES = [
     section: "FlowAI",
     dateAdded: "2026-08-20",
     dateUpdated: "2026-08-20",
+    comingSoon: true,
   },
   {
     id: "ccuintel",
