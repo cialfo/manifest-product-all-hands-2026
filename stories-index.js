@@ -19,6 +19,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
+    comingSoon: true,
   },
   {
     id: "uniprofile",
@@ -28,6 +29,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
+    comingSoon: true,
   },
   {
     id: "bridgeudocs",
@@ -37,6 +39,7 @@ window.STORIES = [
     section: "BridgeU",
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
+    comingSoon: true,
   },
   {
     id: "exploredata",
@@ -46,6 +49,7 @@ window.STORIES = [
     section: "Explore",
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
+    comingSoon: true,
   },
   // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
@@ -121,6 +125,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-07-22",
     dateUpdated: "2026-07-22",
+    comingSoon: true,
   },
 ];
 
