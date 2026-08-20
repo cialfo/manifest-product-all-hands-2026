@@ -11,6 +11,54 @@
 // files is blocked by browsers.
 
 window.STORIES = [
+  // ── Active stories (default order) ──────────────────────────────────────────
+  {
+    id: "ccuintel",
+    file: "story-06-ccuintel.html",
+    title: "CCU Intelligence",
+    author: "Ather Mohiuddin",
+    section: "FlowAI",
+    dateAdded: "2026-07-20",
+    dateUpdated: "2026-07-20",
+  },
+  {
+    id: "designsystem",
+    file: "story-08-designsystem.html",
+    title: "Cialfo Design System",
+    author: "Mobin Varghese",
+    section: "Cialfo",
+    dateAdded: "2026-07-22",
+    dateUpdated: "2026-07-22",
+  },
+  {
+    id: "studentmgmt",
+    file: "story-12-studentmgmt.html",
+    title: "Student Management & Hubs",
+    author: "Prabal Malhan",
+    section: "FlowAI",
+    dateAdded: "2026-08-20",
+    dateUpdated: "2026-08-20",
+  },
+  {
+    id: "ukda",
+    file: "story-09-ukda.html",
+    title: "UK Direct Apply 2027",
+    author: "Narender Yadav",
+    section: "Cialfo",
+    dateAdded: "2026-07-22",
+    dateUpdated: "2026-07-22",
+  },
+  {
+    id: "saige",
+    file: "story-13-saige.html",
+    title: "Saige Founders Internship",
+    author: "Sanchita K",
+    section: "Cialfo",
+    dateAdded: "2026-08-20",
+    dateUpdated: "2026-08-20",
+  },
+  // ── Locked stories (non-interactive in config) ───────────────────────────────
+  // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
     id: "directapply",
     file: "story-01-directapply.html",
@@ -51,25 +99,6 @@ window.STORIES = [
     dateUpdated: "2026-07-20",
     comingSoon: true,
   },
-  // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
-  {
-    id: "designsystem",
-    file: "story-08-designsystem.html",
-    title: "Cialfo Design System",
-    author: "Mobin Varghese",
-    section: "Cialfo",
-    dateAdded: "2026-07-22",
-    dateUpdated: "2026-07-22",
-  },
-  {
-    id: "ukda",
-    file: "story-09-ukda.html",
-    title: "UK Direct Apply 2027",
-    author: "Narender Yadav",
-    section: "Cialfo",
-    dateAdded: "2026-07-22",
-    dateUpdated: "2026-07-22",
-  },
   {
     id: "cowork",
     file: "story-10-cowork.html",
@@ -81,24 +110,6 @@ window.STORIES = [
     comingSoon: true,
   },
   {
-    id: "saige",
-    file: "story-13-saige.html",
-    title: "Saige Founders Internship",
-    author: "Sanchita K",
-    section: "Cialfo",
-    dateAdded: "2026-08-20",
-    dateUpdated: "2026-08-20",
-  },
-  {
-    id: "studentmgmt",
-    file: "story-12-studentmgmt.html",
-    title: "Student Management & Hubs",
-    author: "Prabal Malhan",
-    section: "FlowAI",
-    dateAdded: "2026-08-20",
-    dateUpdated: "2026-08-20",
-  },
-  {
     id: "flowai",
     file: "story-11-flowai.html",
     title: "FlowAI Application Intelligence",
@@ -107,15 +118,6 @@ window.STORIES = [
     dateAdded: "2026-08-20",
     dateUpdated: "2026-08-20",
     comingSoon: true,
-  },
-  {
-    id: "ccuintel",
-    file: "story-06-ccuintel.html",
-    title: "CCU Intelligence",
-    author: "Ather Mohiuddin",
-    section: "FlowAI",
-    dateAdded: "2026-07-20",
-    dateUpdated: "2026-07-20",
   },
   {
     id: "desktopapp",
@@ -132,7 +134,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["directapply", "uniprofile", "bridgeudocs", "exploredata", "desktopapp", "cowork", "ccuintel"];
+const AH26_LOCKED_ORDER = ["ccuintel", "designsystem", "studentmgmt", "ukda", "saige"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
