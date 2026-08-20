@@ -149,12 +149,22 @@
             );
             const cb = row.querySelector(".enabled-toggle");
             cb.checked = !!config.enabled[id];
-            syncRow(row, cb.checked);
-            cb.addEventListener("change", () => {
-              config.enabled[id] = cb.checked;
+            if (story.comingSoon) {
+              cb.disabled = true;
+              cb.checked = false;
+              config.enabled[id] = false;
+              const lbl = row.querySelector(".enabled-label");
+              if (lbl) { lbl.textContent = "Soon"; lbl.style.color = "rgba(255,255,255,0.35)"; }
+              row.style.opacity = "0.4";
+              row.style.pointerEvents = "none";
+            } else {
               syncRow(row, cb.checked);
-              persist();
-            });
+              cb.addEventListener("change", () => {
+                config.enabled[id] = cb.checked;
+                syncRow(row, cb.checked);
+                persist();
+              });
+            }
             tbody.appendChild(row);
           });
           renumber();

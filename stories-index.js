@@ -74,6 +74,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-07-22",
     dateUpdated: "2026-07-22",
+    comingSoon: true,
   },
   {
     id: "ccuintel",
@@ -121,7 +122,9 @@ window.AH26.loadConfig = function () {
 
   const enabled = {};
   allIds.forEach((id) => {
-    enabled[id] = raw.enabled && raw.enabled[id] !== undefined ? !!raw.enabled[id] : true;
+    const story = window.STORIES.find((s) => s.id === id);
+    const defaultEnabled = story && story.comingSoon ? false : true;
+    enabled[id] = raw.enabled && raw.enabled[id] !== undefined ? !!raw.enabled[id] : defaultEnabled;
   });
 
   return { order, enabled };
