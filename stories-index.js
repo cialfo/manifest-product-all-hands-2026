@@ -65,7 +65,7 @@ window.STORIES = [
     id: "ukda",
     file: "story-09-ukda.html",
     title: "UK Direct Apply 2027",
-    author: "Sachin Kumar Singh",
+    author: "Narender Yadav",
     section: "Cialfo",
     dateAdded: "2026-07-22",
     dateUpdated: "2026-07-22",
