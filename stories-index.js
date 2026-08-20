@@ -79,7 +79,7 @@ window.STORIES = [
   {
     id: "studentmgmt",
     file: "story-12-studentmgmt.html",
-    title: "Student Management & Partner Hubs",
+    title: "Student Management & Hubs",
     author: "Prabal Malhan",
     section: "FlowAI",
     dateAdded: "2026-08-20",
