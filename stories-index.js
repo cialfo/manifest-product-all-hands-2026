@@ -77,6 +77,15 @@ window.STORIES = [
     comingSoon: true,
   },
   {
+    id: "flowai",
+    file: "story-11-flowai.html",
+    title: "FlowAI Application Intelligence",
+    author: "Prabal Malhan",
+    section: "FlowAI",
+    dateAdded: "2026-08-20",
+    dateUpdated: "2026-08-20",
+  },
+  {
     id: "ccuintel",
     file: "story-06-ccuintel.html",
     title: "CCU Intelligence",
