@@ -123,8 +123,8 @@ window.AH26.loadConfig = function () {
   const enabled = {};
   allIds.forEach((id) => {
     const story = window.STORIES.find((s) => s.id === id);
-    const defaultEnabled = story && story.comingSoon ? false : true;
-    enabled[id] = raw.enabled && raw.enabled[id] !== undefined ? !!raw.enabled[id] : defaultEnabled;
+    if (story && story.comingSoon) { enabled[id] = false; return; }
+    enabled[id] = raw.enabled && raw.enabled[id] !== undefined ? !!raw.enabled[id] : true;
   });
 
   return { order, enabled };
