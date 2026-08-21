@@ -445,6 +445,7 @@
       Payal: "Payal.png",
       Vivek: "Vivek-Thakur.png",
       Maitreyi: "Maitreyi.png",
+      Megha: "Megha.png",
       Palak: "Palak.png",
       Sanchita: "Sanchita.png",
       Tanzeem: "Tanzeem.png",
