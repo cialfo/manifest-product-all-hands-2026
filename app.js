@@ -453,6 +453,7 @@
       "Jyoti Ram": "Jyoti Ram.png",
       Akanksha: "akanksha-gupta.png",
       "Akanksha Gupta": "akanksha-gupta.png",
+      "Yash Jain": "Yash Jain.png",
       Yashank: "Yashank.png",
       "Yashank Srivastava": "Yashank.png",
       Ashish: "Ashish.png",
