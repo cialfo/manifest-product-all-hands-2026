@@ -34,7 +34,7 @@ window.STORIES = [
     id: "studentmgmt",
     file: "story-12-studentmgmt.html",
     title: "Student Management & Hubs",
-    author: "Prabal Malhan",
+    author: "Aditya Semwal",
     section: "FlowAI",
     dateAdded: "2026-08-20",
     dateUpdated: "2026-08-20",
