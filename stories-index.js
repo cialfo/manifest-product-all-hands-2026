@@ -40,15 +40,6 @@ window.STORIES = [
     dateUpdated: "2026-08-20",
   },
   {
-    id: "ukda",
-    file: "story-09-ukda.html",
-    title: "UK Direct Apply 2027",
-    author: "Narender Yadav",
-    section: "Cialfo",
-    dateAdded: "2026-07-22",
-    dateUpdated: "2026-07-22",
-  },
-  {
     id: "saige",
     file: "story-13-saige.html",
     title: "Saige Founders Internship",
@@ -59,6 +50,16 @@ window.STORIES = [
   },
   // ── Locked stories (non-interactive in config) ───────────────────────────────
   // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
+  {
+    id: "ukda",
+    file: "story-09-ukda.html",
+    title: "UK Direct Apply 2027",
+    author: "Narender Yadav",
+    section: "Cialfo",
+    dateAdded: "2026-07-22",
+    dateUpdated: "2026-07-22",
+    comingSoon: true,
+  },
   {
     id: "directapply",
     file: "story-01-directapply.html",
@@ -134,7 +135,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["ccuintel", "designsystem", "studentmgmt", "ukda", "saige"];
+const AH26_LOCKED_ORDER = ["ccuintel", "designsystem", "studentmgmt", "saige"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
