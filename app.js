@@ -105,8 +105,19 @@
     }
   });
 
+  // Index of the agenda slide, resolved from #agenda rather than hard-coded, so
+  // slides can be inserted ahead of it without breaking Home / the #agenda link.
+  function agendaIndex() {
+    const el = document.getElementById("agenda");
+    if (el) {
+      for (let i = 0; i < slides.length; i++) if (slides[i] === el) return i;
+    }
+    return 1;
+  }
+  window.agendaIndex = agendaIndex;
+
   const homeLink = document.getElementById("home-link");
-  if (homeLink) homeLink.addEventListener("click", () => goTo(1));
+  if (homeLink) homeLink.addEventListener("click", () => goTo(agendaIndex()));
 
   // No top bar — stage uses full viewport height
   document.body.style.paddingTop = "0px";
