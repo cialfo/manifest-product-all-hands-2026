@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positive Outcome Trends — Product All Hands August 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,400;1,700&family=Literata:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      try {
+        if (localStorage.getItem("ah26_theme") === "light")
+          document.documentElement.classList.add("theme-light");
+      } catch (e) {}
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .stat-before, .stat-card-foot { font-family: "Literata", Georgia, serif !important; }
+      .stat-card-foot { color: var(--text-primary) !important; }
+      .stat-after-unit { color: var(--text-primary) !important; }
+      .stat-board-footnote { color: var(--text-primary) !important; }
+    </style>
+    <script type="application/json" id="story-meta">
+      {
+        "id": "outcomes",
+        "title": "Positive Outcome Trends",
+        "author": "Dhruv Pandey",
+        "section": "Explore",
+        "dateAdded": "2026-08-26",
+        "dateUpdated": "2026-08-26"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="bg"><div class="dots"></div></div>
+    <div id="progress"></div>
+
+    <div id="stage">
+
+      <!-- SLIDE 1: STATS BOARD -->
+      <div class="slide active">
+        <div class="w-full h-full flex flex-col">
+          <div class="hbar">
+            <span class="hbar-title">Positive Outcome Trends</span>
+            <div class="mgb"><span class="ml1">Explore</span><span class="ml2">Outcomes</span></div>
+          </div>
+          <div class="inner">
+            <div class="dots"></div>
+            <div class="play-zone stat-board">
+              <div class="corner tl"></div>
+              <div class="corner tr"></div>
+              <div class="corner bl"></div>
+              <div class="corner br"></div>
+              <div class="stat-board-header">
+                <div class="stat-board-title">Four projects. <em>All trending up.</em></div>
+              </div>
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-card-label">BridgeU Connections</div>
+                  <div class="stat-card-row">
+                    <span class="stat-before" style="font-family: 'Literata', Georgia, serif">208</span>
+                    <span class="stat-arrow">&rarr;</span>
+                    <span class="stat-after" style="font-family: 'Literata', Georgia, serif">458</span>
+                  </div>
+                  <div class="stat-card-foot">Students connected. July to August.</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-card-label">New Uni Profile</div>
+                  <div class="stat-card-row">
+                    <span class="stat-before" style="font-family: 'Literata', Georgia, serif">18.2%</span>
+                    <span class="stat-arrow">&rarr;</span>
+                    <span class="stat-after" style="font-family: 'Literata', Georgia, serif">28.0%</span>
+                  </div>
+                  <div class="stat-card-foot">Add to list rate. Old profile vs. new.</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-card-label">Scholarships</div>
+                  <div class="stat-card-row">
+                    <span class="stat-before" style="font-family: 'Literata', Georgia, serif">9%</span>
+                    <span class="stat-arrow">&rarr;</span>
+                    <span class="stat-after" style="font-family: 'Literata', Georgia, serif">15.4%</span>
+                  </div>
+                  <div class="stat-card-foot">Bookmark rate. April low to August high.</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-card-label">Clearing</div>
+                  <div class="stat-card-row">
+                    <span class="stat-before" style="font-family: 'Literata', Georgia, serif">200 target</span>
+                    <span class="stat-arrow">&rarr;</span>
+                    <span class="stat-after" style="font-family: 'Literata', Georgia, serif">261</span>
+                  </div>
+                  <div class="stat-card-foot">Leads generated. Past target since June.</div>
+                </div>
+              </div>
+              <div class="stat-board-footnote">
+                &#9889; Full breakdown lives in Manifest Intelligence &#8594; Outcome Reporting &#8594; Explore.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="slide-count"></div>
+    <div id="hint">&#8592; &#8594; arrow keys to navigate</div>
+    <script src="stories-index.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
