@@ -48,15 +48,6 @@ window.STORIES = [
     dateAdded: "2026-08-20",
     dateUpdated: "2026-08-20",
   },
-  {
-    id: "outcomes",
-    file: "story-14-outcomes.html",
-    title: "Positive Outcome Trends",
-    author: "Dhruv Pandey",
-    section: "Explore",
-    dateAdded: "2026-08-26",
-    dateUpdated: "2026-08-26",
-  },
   // ── Locked stories (non-interactive in config) ───────────────────────────────
   // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
   {
@@ -144,7 +135,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["ccuintel", "designsystem", "studentmgmt", "saige", "outcomes"];
+const AH26_LOCKED_ORDER = ["ccuintel", "designsystem", "studentmgmt", "saige"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
