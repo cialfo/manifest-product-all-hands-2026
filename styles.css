@@ -117,7 +117,7 @@ body {
 #home-link {
   position: fixed;
   bottom: 18px;
-  left: 24px;
+  right: 24px;
   z-index: 220;
   display: none;
   align-items: center;

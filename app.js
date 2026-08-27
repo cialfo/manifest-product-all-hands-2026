@@ -75,8 +75,15 @@
     if (countEl) countEl.textContent = current + 1 + " / " + TOTAL;
     const prog = document.getElementById("progress");
     if (prog) prog.style.width = ((current + 1) / TOTAL) * 100 + "%";
+    // The home button jumps to the agenda. On index.html it is offered only on
+    // the title slide, as a way to skip straight to the topic list; showing it
+    // on later slides would also stack it beside the config gear.
     const home = document.getElementById("home-link");
-    if (home) home.style.display = current >= 2 ? "flex" : "none";
+    const onIndex = !!document.getElementById("agenda");
+    if (home) {
+      const show = onIndex ? current === 0 : current >= 2;
+      home.style.display = show ? "flex" : "none";
+    }
   }
 
   function restartAnimations() {
