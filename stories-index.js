@@ -42,7 +42,7 @@ window.STORIES = [
   {
     id: "saige",
     file: "story-13-saige.html",
-    title: "Saige Founders Internship",
+    title: "Saige Experience",
     author: "Sanchita K",
     section: "Cialfo",
     dateAdded: "2026-08-20",
