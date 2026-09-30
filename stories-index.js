@@ -22,10 +22,10 @@ window.STORIES = [
     dateUpdated: "2026-09-30",
   },
   {
-    id: "saigevoice",
-    file: "story-14-saigevoice.html",
-    title: "Saige Voice",
-    author: "Shaikh Faizan Ahmed",
+    id: "ainotes",
+    file: "story-16-ainotes.html",
+    title: "AI Notes",
+    author: "Vidhu Raj Singh",
     section: "Cialfo",
     dateAdded: "2026-09-30",
     dateUpdated: "2026-09-30",
@@ -40,10 +40,10 @@ window.STORIES = [
     dateUpdated: "2026-09-30",
   },
   {
-    id: "ainotes",
-    file: "story-16-ainotes.html",
-    title: "AI Notes",
-    author: "Vidhu Raj Singh",
+    id: "saigevoice",
+    file: "story-14-saigevoice.html",
+    title: "Saige Voice",
+    author: "Shaikh Faizan Ahmed",
     section: "Cialfo",
     dateAdded: "2026-09-30",
     dateUpdated: "2026-09-30",
@@ -176,7 +176,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["careers", "saigevoice", "cdocsrevamp", "ainotes"];
+const AH26_LOCKED_ORDER = ["careers", "ainotes", "cdocsrevamp", "saigevoice"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
