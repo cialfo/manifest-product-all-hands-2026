@@ -436,6 +436,8 @@
       Saransh: "saransh-mishra.png",
       "Shan Wang": "shan-wang.png",
       "Shaikh Faizan Ahmed": "shaikh-faizan-ahmed.png",
+      Lakshya: "lakshya.png",
+      Evalyn: "evalyn.png",
       Siddharth: "siddharth-kansal.png",
       "Simran Singh": "simran-singh.png",
       Stanley: "stanley-chia.png",
