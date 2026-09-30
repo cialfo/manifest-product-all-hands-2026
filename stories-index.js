@@ -13,6 +13,34 @@
 window.STORIES = [
   // ── Active stories (default order) ──────────────────────────────────────────
   {
+    id: "saigevoice",
+    file: "story-14-saigevoice.html",
+    title: "Saige Voice",
+    author: "Shaikh Faizan Ahmed",
+    section: "Cialfo",
+    dateAdded: "2026-09-30",
+    dateUpdated: "2026-09-30",
+  },
+  {
+    id: "cdocsrevamp",
+    file: "story-15-cdocsrevamp.html",
+    title: "cDocs Revamp",
+    author: "Saransh Mishra",
+    section: "Cialfo",
+    dateAdded: "2026-09-30",
+    dateUpdated: "2026-09-30",
+  },
+  {
+    id: "ainotes",
+    file: "story-16-ainotes.html",
+    title: "AI Notes",
+    author: "Vidhu Raj Singh",
+    section: "Cialfo",
+    dateAdded: "2026-09-30",
+    dateUpdated: "2026-09-30",
+  },
+  // ── Previous months (hidden from the agenda) ────────────────────────────────
+  {
     id: "ccuintel",
     file: "story-06-ccuintel.html",
     title: "CCU Intelligence",
@@ -20,6 +48,7 @@ window.STORIES = [
     section: "FlowAI",
     dateAdded: "2026-07-20",
     dateUpdated: "2026-07-20",
+    comingSoon: true,
   },
   {
     id: "designsystem",
@@ -29,6 +58,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-07-22",
     dateUpdated: "2026-07-22",
+    comingSoon: true,
   },
   {
     id: "studentmgmt",
@@ -38,6 +68,7 @@ window.STORIES = [
     section: "FlowAI",
     dateAdded: "2026-08-20",
     dateUpdated: "2026-08-20",
+    comingSoon: true,
   },
   {
     id: "saige",
@@ -47,6 +78,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-08-20",
     dateUpdated: "2026-08-20",
+    comingSoon: true,
   },
   // ── Locked stories (non-interactive in config) ───────────────────────────────
   // { id: "k12health", file: "story-03-k12health.html", title: "K12 Health Monitor", author: "Rajat Khanna", section: "Cialfo", dateAdded: "2026-07-20", dateUpdated: "2026-07-20" },
@@ -135,13 +167,13 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["ccuintel", "designsystem", "studentmgmt", "saige"];
+const AH26_LOCKED_ORDER = ["saigevoice", "cdocsrevamp", "ainotes"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
 window.AH26 = window.AH26 || {};
 
-window.AH26.LOCALSTORAGE_KEY = "ah26_agenda_aug";
+window.AH26.LOCALSTORAGE_KEY = "ah26_agenda_sep";
 
 // Read the user's saved config, filling in defaults from STORIES.
 window.AH26.loadConfig = function () {

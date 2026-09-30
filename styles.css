@@ -1849,3 +1849,29 @@ html.theme-light .polaroid {
   background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb), 0.2), transparent);
   align-self: stretch;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SEPTEMBER 2026 STORIES — shared helpers (replace per-story inline styles)
+   ═══════════════════════════════════════════════════════════════════ */
+.divider-name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.12em;
+}
+.divider-title em.divider-tagline {
+  color: #000000;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+.live-link-static {
+  cursor: default;
+  pointer-events: none;
+}
+.live-link-static svg {
+  width: 22px;
+  height: 22px;
+}
+.stat-serif {
+  font-family: "Literata", Georgia, serif;
+}
