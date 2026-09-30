@@ -13,6 +13,15 @@
 window.STORIES = [
   // ── Active stories (default order) ──────────────────────────────────────────
   {
+    id: "careers",
+    file: "story-17-careers.html",
+    title: "Career Outcomes & Jobs",
+    author: "Charles David",
+    section: "Cialfo",
+    dateAdded: "2026-09-30",
+    dateUpdated: "2026-09-30",
+  },
+  {
     id: "saigevoice",
     file: "story-14-saigevoice.html",
     title: "Saige Voice",
@@ -167,7 +176,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["saigevoice", "cdocsrevamp", "ainotes"];
+const AH26_LOCKED_ORDER = ["careers", "saigevoice", "cdocsrevamp", "ainotes"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
