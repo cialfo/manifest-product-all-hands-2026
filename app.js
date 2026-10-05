@@ -552,7 +552,7 @@
       Sanya: "sanya-mandloi.png",
       Saransh: "saransh-mishra.png",
       "Shan Wang": "shan-wang.png",
-      "Shaikh Faizan Ahmed": "shaikh-faizan-ahmed.png",
+      "Shaikh Faizan Ahmed": "shaikh-faizan-ahmed-2026.png",
       Lakshya: "lakshya-2026.png",
       Evalyn: "evalyn.png",
       Siddharth: "siddharth-kansal.png",
