@@ -530,7 +530,7 @@
       Saransh: "saransh-mishra.png",
       "Shan Wang": "shan-wang.png",
       "Shaikh Faizan Ahmed": "shaikh-faizan-ahmed.png",
-      Lakshya: "lakshya.png",
+      Lakshya: "lakshya-2026.png",
       Evalyn: "evalyn.png",
       Siddharth: "siddharth-kansal.png",
       "Simran Singh": "simran-singh.png",
