@@ -552,7 +552,7 @@
       "Tarun Negi": "Tarun-Negi.png",
       Mobin: "Mobin-V.png",
       Vishal: "vishal-gosain.png",
-      Waqas: "waqas-akhtar.png",
+      Waqas: "waqas-akhtar-2026.png",
       William: "william-hund.png",
       Prabal: "Prabal-M.png",
       "Mool Chand": "Mool-Chand.png",
