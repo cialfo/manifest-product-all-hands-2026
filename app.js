@@ -93,7 +93,7 @@
     const colors = ["#d0021b", "#e8524a", "#f5a623", "#f8e71c", "#7ed321", "#4a90e2", "#bd10e0"];
     const pieces = [];
     for (let side = 0; side < 2; side++) {
-      for (let i = 0; i < 90; i++) {
+      for (let i = 0; i < 200; i++) {
         const angle = (side === 0 ? -60 : -120) + (Math.random() * 30 - 15);
         const speed = 9 + Math.random() * 9;
         const rad = (angle * Math.PI) / 180;
@@ -112,10 +112,10 @@
     }
 
     // Rain across the full width of the screen, staggered so it keeps falling.
-    for (let i = 0; i < 260; i++) {
+    for (let i = 0; i < 650; i++) {
       pieces.push({
         x: Math.random() * W,
-        y: -20 - Math.random() * H * 1.2,
+        y: -20 - Math.random() * H * 1.6,
         vx: (Math.random() - 0.5) * 3,
         vy: 2 + Math.random() * 4,
         w: 6 + Math.random() * 6,
@@ -128,7 +128,7 @@
     }
 
     const start = performance.now();
-    const DURATION = 5500;
+    const DURATION = 7000;
     if (confettiFrame) cancelAnimationFrame(confettiFrame);
     function frame(now) {
       const elapsed = now - start;
