@@ -1875,3 +1875,13 @@ html.theme-light .polaroid {
 .stat-serif {
   font-family: "Literata", Georgia, serif;
 }
+
+/* Confetti overlay for the "Celebrating our people" slides (drawn by app.js) */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}

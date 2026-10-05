@@ -67,8 +67,81 @@
     slides[current].classList.add("active");
     updateChrome();
     restartAnimations();
+    if (slides[current].querySelector(".people-slide")) launchConfetti();
   }
   window.goTo = goTo;
+
+  // ── Confetti burst for the "Celebrating our people" slides ──
+  // Plain canvas, no dependency. Skipped when the viewer prefers reduced motion.
+  let confettiFrame = null;
+  function launchConfetti() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let canvas = document.getElementById("confetti-canvas");
+    if (!canvas) {
+      canvas = document.createElement("canvas");
+      canvas.id = "confetti-canvas";
+      document.body.appendChild(canvas);
+    }
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const colors = ["#d0021b", "#e8524a", "#f5a623", "#f8e71c", "#7ed321", "#4a90e2", "#bd10e0"];
+    const pieces = [];
+    for (let side = 0; side < 2; side++) {
+      for (let i = 0; i < 90; i++) {
+        const angle = (side === 0 ? -60 : -120) + (Math.random() * 30 - 15);
+        const speed = 9 + Math.random() * 9;
+        const rad = (angle * Math.PI) / 180;
+        pieces.push({
+          x: side === 0 ? 0 : W,
+          y: H * 0.85,
+          vx: Math.cos(rad) * speed,
+          vy: Math.sin(rad) * speed,
+          w: 6 + Math.random() * 6,
+          h: 8 + Math.random() * 8,
+          rot: Math.random() * Math.PI,
+          vr: (Math.random() - 0.5) * 0.3,
+          color: colors[(Math.random() * colors.length) | 0],
+        });
+      }
+    }
+
+    const start = performance.now();
+    const DURATION = 3800;
+    if (confettiFrame) cancelAnimationFrame(confettiFrame);
+    function frame(now) {
+      const elapsed = now - start;
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalAlpha = elapsed > DURATION - 800 ? Math.max(0, (DURATION - elapsed) / 800) : 1;
+      for (const p of pieces) {
+        p.vy += 0.28;
+        p.vx *= 0.99;
+        p.vy *= 0.99;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot * 2)));
+        ctx.restore();
+      }
+      if (elapsed < DURATION) {
+        confettiFrame = requestAnimationFrame(frame);
+      } else {
+        ctx.clearRect(0, 0, W, H);
+        confettiFrame = null;
+      }
+    }
+    confettiFrame = requestAnimationFrame(frame);
+  }
+  window.launchConfetti = launchConfetti;
 
   function updateChrome() {
     const countEl = document.getElementById("slide-count");
@@ -571,6 +644,7 @@
           grid.addEventListener("mousemove", mouseHandler);
         }
         grid.classList.add("mode-" + mode);
+        launchConfetti();
         if (mode === "slide-left" || mode === "shuffle-right" || mode === "explode") {
           setTimeout(() => {
             if (grid.classList.contains("mode-" + mode)) clearMode();
