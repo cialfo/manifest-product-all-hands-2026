@@ -71,96 +71,119 @@
   }
   window.goTo = goTo;
 
-  // ── Confetti burst for the "Celebrating our people" slides ──
-  // Plain canvas, no dependency. Skipped when the viewer prefers reduced motion.
-  let confettiFrame = null;
+  // ── Confetti for the "Celebrating our people" slides ──
+  // Bursts from the bottom corners, plus rain across the whole screen that keeps
+  // falling for as long as a people slide is showing. Plain canvas, no dependency.
+  // Skipped when the viewer prefers reduced motion.
+  const CONFETTI_COLORS = ["#d0021b", "#e8524a", "#f5a623", "#f8e71c", "#7ed321", "#4a90e2", "#bd10e0"];
+  const confetti = { pieces: [], frame: null, canvas: null, ctx: null, W: 0, H: 0 };
+
+  function onPeopleSlide() {
+    return !!(slides[current] && slides[current].querySelector(".people-slide"));
+  }
+  function confettiResize() {
+    const dpr = window.devicePixelRatio || 1;
+    confetti.W = window.innerWidth;
+    confetti.H = window.innerHeight;
+    confetti.canvas.width = confetti.W * dpr;
+    confetti.canvas.height = confetti.H * dpr;
+    confetti.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function confettiPiece(extra) {
+    return Object.assign(
+      {
+        w: 6 + Math.random() * 6,
+        h: 8 + Math.random() * 8,
+        rot: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.3,
+        color: CONFETTI_COLORS[(Math.random() * CONFETTI_COLORS.length) | 0],
+      },
+      extra
+    );
+  }
+  function rainPiece(y) {
+    return confettiPiece({
+      rain: true,
+      x: Math.random() * confetti.W,
+      y: y,
+      vx: (Math.random() - 0.5) * 3,
+      vy: 2 + Math.random() * 4,
+    });
+  }
+
   function launchConfetti() {
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let canvas = document.getElementById("confetti-canvas");
-    if (!canvas) {
-      canvas = document.createElement("canvas");
-      canvas.id = "confetti-canvas";
-      document.body.appendChild(canvas);
+    if (!confetti.canvas) {
+      confetti.canvas = document.createElement("canvas");
+      confetti.canvas.id = "confetti-canvas";
+      document.body.appendChild(confetti.canvas);
+      confetti.ctx = confetti.canvas.getContext("2d");
+      window.addEventListener("resize", () => confetti.canvas && confettiResize());
     }
-    const ctx = canvas.getContext("2d");
-    const dpr = window.devicePixelRatio || 1;
-    const W = window.innerWidth;
-    const H = window.innerHeight;
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    confettiResize();
+    const { W, H } = confetti;
 
-    const colors = ["#d0021b", "#e8524a", "#f5a623", "#f8e71c", "#7ed321", "#4a90e2", "#bd10e0"];
-    const pieces = [];
+    // Corner bursts every time (slide opened, or "Shuffle the wall").
     for (let side = 0; side < 2; side++) {
       for (let i = 0; i < 200; i++) {
         const angle = (side === 0 ? -60 : -120) + (Math.random() * 30 - 15);
         const speed = 9 + Math.random() * 9;
         const rad = (angle * Math.PI) / 180;
-        pieces.push({
-          x: side === 0 ? 0 : W,
-          y: H * 0.85,
-          vx: Math.cos(rad) * speed,
-          vy: Math.sin(rad) * speed,
-          w: 6 + Math.random() * 6,
-          h: 8 + Math.random() * 8,
-          rot: Math.random() * Math.PI,
-          vr: (Math.random() - 0.5) * 0.3,
-          color: colors[(Math.random() * colors.length) | 0],
-        });
+        confetti.pieces.push(
+          confettiPiece({ x: side === 0 ? 0 : W, y: H * 0.85, vx: Math.cos(rad) * speed, vy: Math.sin(rad) * speed })
+        );
       }
     }
-
-    // Rain across the full width of the screen, staggered so it keeps falling.
-    for (let i = 0; i < 650; i++) {
-      pieces.push({
-        x: Math.random() * W,
-        y: -20 - Math.random() * H * 1.6,
-        vx: (Math.random() - 0.5) * 3,
-        vy: 2 + Math.random() * 4,
-        w: 6 + Math.random() * 6,
-        h: 8 + Math.random() * 8,
-        rot: Math.random() * Math.PI,
-        vr: (Math.random() - 0.5) * 0.3,
-        color: colors[(Math.random() * colors.length) | 0],
-        rain: true,
-      });
+    // Start the continuous rain once.
+    if (!confetti.pieces.some((p) => p.rain)) {
+      for (let i = 0; i < 500; i++) confetti.pieces.push(rainPiece(-20 - Math.random() * H * 1.6));
     }
+    if (!confetti.frame) {
+      confetti.fade = 1;
+      confetti.frame = requestAnimationFrame(confettiFrame);
+    }
+  }
 
-    const start = performance.now();
-    const DURATION = 7000;
-    if (confettiFrame) cancelAnimationFrame(confettiFrame);
-    function frame(now) {
-      const elapsed = now - start;
-      ctx.clearRect(0, 0, W, H);
-      ctx.globalAlpha = elapsed > DURATION - 800 ? Math.max(0, (DURATION - elapsed) / 800) : 1;
-      for (const p of pieces) {
-        if (p.rain) {
-          p.vy = Math.min(p.vy + 0.05, 6);
-          p.vx += Math.sin((elapsed / 400) + p.rot) * 0.05;
-        } else {
-          p.vy += 0.28;
-          p.vx *= 0.99;
-          p.vy *= 0.99;
-        }
-        p.x += p.vx;
-        p.y += p.vy;
-        p.rot += p.vr;
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.color;
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot * 2)));
-        ctx.restore();
-      }
-      if (elapsed < DURATION) {
-        confettiFrame = requestAnimationFrame(frame);
+  function confettiFrame(now) {
+    const { ctx, W, H } = confetti;
+    const showing = onPeopleSlide();
+    // Fade out quickly once we leave the people slide, then stop.
+    confetti.fade = showing ? 1 : confetti.fade - 0.06;
+    ctx.clearRect(0, 0, W, H);
+    if (confetti.fade <= 0) {
+      confetti.pieces = [];
+      confetti.frame = null;
+      return;
+    }
+    ctx.globalAlpha = confetti.fade;
+    const next = [];
+    for (const p of confetti.pieces) {
+      if (p.rain) {
+        p.vy = Math.min(p.vy + 0.05, 6);
+        p.vx += Math.sin(now / 400 + p.rot) * 0.05;
       } else {
-        ctx.clearRect(0, 0, W, H);
-        confettiFrame = null;
+        p.vy += 0.28;
+        p.vx *= 0.99;
+        p.vy *= 0.99;
       }
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      if (p.y > H + 30) {
+        // Rain loops back to the top; burst pieces are done.
+        if (p.rain) next.push(rainPiece(-20 - Math.random() * 80));
+        continue;
+      }
+      next.push(p);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot * 2)));
+      ctx.restore();
     }
-    confettiFrame = requestAnimationFrame(frame);
+    confetti.pieces = next;
+    confetti.frame = requestAnimationFrame(confettiFrame);
   }
   window.launchConfetti = launchConfetti;
 
