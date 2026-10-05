@@ -33,11 +33,11 @@ window.STORIES = [
   {
     id: "cdocsrevamp",
     file: "story-15-cdocsrevamp.html",
-    title: "cDocs Revamp",
+    title: "cDocs Enhancement",
     author: "Saransh Mishra",
     section: "Cialfo",
     dateAdded: "2026-09-30",
-    dateUpdated: "2026-10-05",
+    dateUpdated: "2026-10-06",
   },
   {
     id: "saigevoice",
