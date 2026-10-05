@@ -1216,16 +1216,16 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  gap: 12px 12px;
+  gap: 18px 18px;
   perspective: 1200px;
   position: relative;
   min-height: 0;
 }
 
 .polaroid {
-  width: 125px;
+  width: 180px;
   background: #fafaf3;
-  padding: 8px 8px 22px;
+  padding: 10px 10px 26px;
   box-shadow:
     0 4px 14px rgba(0, 0, 0, 0.35),
     0 1px 2px rgba(0, 0, 0, 0.2);
@@ -1268,7 +1268,7 @@ html.theme-light .polaroid {
   margin-top: 10px;
   text-align: center;
   font-family: "Caveat", "Marker Felt", cursive;
-  font-size: 18px;
+  font-size: 24px;
   color: #222;
   line-height: 1;
 }
@@ -1884,4 +1884,10 @@ html.theme-light .polaroid {
   height: 100vh;
   pointer-events: none;
   z-index: 9999;
+}
+.people-grid.people-many .polaroid {
+  width: 148px;
+}
+.people-grid.people-many .polaroid-name {
+  font-size: 21px;
 }
