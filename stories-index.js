@@ -25,10 +25,10 @@ window.STORIES = [
     id: "ainotes",
     file: "story-16-ainotes.html",
     title: "AI Notes",
-    author: "Vidhu Raj Singh",
+    author: "Vaibhav Shrivastava",
     section: "Cialfo",
     dateAdded: "2026-09-30",
-    dateUpdated: "2026-09-30",
+    dateUpdated: "2026-10-05",
   },
   {
     id: "cdocsrevamp",
