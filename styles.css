@@ -1885,9 +1885,23 @@ html.theme-light .polaroid {
   pointer-events: none;
   z-index: 9999;
 }
+/* People-wall card sizes, picked in app.js by team size */
+.people-grid.people-xl .polaroid {
+  width: 260px;
+}
+.people-grid.people-lg .polaroid {
+  width: 225px;
+}
+.people-grid.people-md .polaroid {
+  width: 185px;
+}
 .people-grid.people-many .polaroid {
-  width: 148px;
+  width: 165px;
+}
+.people-grid.people-xl .polaroid-name,
+.people-grid.people-lg .polaroid-name {
+  font-size: 28px;
 }
 .people-grid.people-many .polaroid-name {
-  font-size: 21px;
+  font-size: 22px;
 }

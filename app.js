@@ -583,8 +583,11 @@
     const MODES = ["slide-left", "shuffle-right", "dance", "explode", "hide-from-mouse"];
 
     const names = JSON.parse(grid.getAttribute("data-people") || "[]");
-    // Bigger cards for small teams; slightly smaller once the wall wraps to two rows.
-    grid.classList.toggle("people-many", names.length > 5);
+    // Size the cards to the team: fewer people, bigger photos (see styles.css).
+    const n = names.length;
+    grid.classList.add(
+      n <= 3 ? "people-xl" : n === 4 ? "people-lg" : n === 5 ? "people-md" : "people-many"
+    );
     names.forEach((name, i) => {
       const card = document.createElement("div");
       const flavor = HOVER_FLAVORS[(Math.random() * HOVER_FLAVORS.length) | 0];
