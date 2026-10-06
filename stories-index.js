@@ -28,7 +28,7 @@ window.STORIES = [
     author: "Vaibhav Shrivastava",
     section: "Cialfo",
     dateAdded: "2026-09-30",
-    dateUpdated: "2026-10-05",
+    dateUpdated: "2026-10-06",
   },
   {
     id: "cdocsrevamp",
@@ -46,7 +46,7 @@ window.STORIES = [
     author: "Shaikh Faizan Ahmed",
     section: "Cialfo",
     dateAdded: "2026-09-30",
-    dateUpdated: "2026-10-05",
+    dateUpdated: "2026-10-06",
   },
   // ── Previous months (hidden from the agenda) ────────────────────────────────
   {
@@ -86,7 +86,7 @@ window.STORIES = [
     author: "Sanchita K",
     section: "Cialfo",
     dateAdded: "2026-08-20",
-    dateUpdated: "2026-08-20",
+    dateUpdated: "2026-10-06",
     comingSoon: true,
   },
   // ── Locked stories (non-interactive in config) ───────────────────────────────
@@ -118,7 +118,7 @@ window.STORIES = [
     author: "Ahmad Shafiq",
     section: "Cialfo",
     dateAdded: "2026-07-20",
-    dateUpdated: "2026-07-20",
+    dateUpdated: "2026-10-06",
     comingSoon: true,
   },
   {
@@ -148,7 +148,7 @@ window.STORIES = [
     author: "Vidhu Raj Singh",
     section: "Cialfo",
     dateAdded: "2026-07-22",
-    dateUpdated: "2026-07-22",
+    dateUpdated: "2026-10-06",
     comingSoon: true,
   },
   {
@@ -168,7 +168,7 @@ window.STORIES = [
     author: "Hitendra Kumar",
     section: "Cialfo",
     dateAdded: "2026-07-22",
-    dateUpdated: "2026-07-22",
+    dateUpdated: "2026-10-06",
     comingSoon: true,
   },
 ];
