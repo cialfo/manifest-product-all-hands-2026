@@ -1,5 +1,8 @@
 // Shared slide/carousel/scale logic — works on index.html and story-*.html
 (function () {
+  // Asset version this page loaded (the ?v= on app.js). version.txt holds the
+  // latest published one; open tabs poll it and offer a refresh when it changes.
+  const LOADED_VERSION = ((document.currentScript && document.currentScript.src) || "").split("v=")[1] || "";
   const slides = document.querySelectorAll(".slide");
   const TOTAL = slides.length;
   let current = 0;
@@ -69,10 +72,89 @@
     restartAnimations();
     if (slides[current].querySelector(".people-slide")) launchConfetti();
     document
-      .querySelectorAll(".stu-card.is-spot, .stu-card.is-dim")
+      .querySelectorAll(".is-spot, .is-dim")
       .forEach((c) => c.classList.remove("is-spot", "is-dim"));
+    runCountUps(slides[current]);
   }
   window.goTo = goTo;
+
+  // ── Outcome slides: mini bars + count-up numbers ──
+  // .oc-bars[data-before][data-after][data-max?] → last-period vs now bars.
+  // .oc-split[data-a][data-b] → one stacked split bar with a legend.
+  // Widths go in a --w custom property so the CSS ah-bar animation grows them.
+  const fmtShare = (n, total) => Math.round((100 * n) / total) + "%";
+  document.querySelectorAll(".oc-bars").forEach((el) => {
+    const before = parseFloat(el.dataset.before);
+    const after = parseFloat(el.dataset.after);
+    const max = parseFloat(el.dataset.max) || Math.max(before, after);
+    [
+      [el.dataset.beforeLabel, before, ""],
+      [el.dataset.afterLabel, after, " is-after"],
+    ].forEach(([label, value, mod]) => {
+      const row = document.createElement("div");
+      row.className = "oc-bar-row";
+      row.innerHTML =
+        '<span class="oc-bar-label"></span><span class="oc-bar-track"><span class="oc-bar' +
+        mod +
+        '"></span></span>';
+      row.querySelector(".oc-bar-label").textContent = label || "";
+      row.querySelector(".oc-bar").style.setProperty("--w", (100 * value) / max + "%");
+      el.appendChild(row);
+    });
+  });
+  document.querySelectorAll(".oc-split").forEach((el) => {
+    const a = parseFloat(el.dataset.a);
+    const b = parseFloat(el.dataset.b);
+    const total = a + b;
+    el.innerHTML =
+      '<div class="oc-split-track"><span class="oc-split-a"></span><span class="oc-split-b"></span></div>' +
+      '<div class="oc-split-legend"><span></span><span></span></div>';
+    el.querySelector(".oc-split-a").style.setProperty("--w", (100 * a) / total + "%");
+    el.querySelector(".oc-split-b").style.setProperty("--w", (100 * b) / total + "%");
+    const legend = el.querySelectorAll(".oc-split-legend span");
+    legend[0].textContent = el.dataset.aLabel + " " + fmtShare(a, total);
+    legend[1].textContent = el.dataset.bLabel + " " + fmtShare(b, total);
+  });
+
+  // Count every number inside an outcome tile's headline up from zero, keeping
+  // its decimals, thousands commas and any K / % / × around it.
+  function runCountUps(slide) {
+    if (!slide) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    slide.querySelectorAll(".oc-wrap .stat-after, .oc-wrap .stat-before").forEach((el) => {
+      if (!el.dataset.final) el.dataset.final = el.textContent;
+      const final = el.dataset.final;
+      const tokens = final.match(/\d[\d,]*(?:\.\d+)?/g);
+      if (!tokens) return;
+      // Timer-driven (not requestAnimationFrame) so it always finishes, even in
+      // a background tab or a headless capture.
+      clearTimeout(el._countTimer);
+      const start = Date.now() + 700;
+      const dur = 1300;
+      const tick = () => {
+        const t = Math.min(1, Math.max(0, (Date.now() - start) / dur));
+        const k = 1 - Math.pow(1 - t, 3);
+        el.textContent = final.replace(/\d[\d,]*(?:\.\d+)?/g, (tok) => {
+          const dec = (tok.split(".")[1] || "").length;
+          const v = parseFloat(tok.replace(/,/g, "")) * k;
+          return tok.includes(",")
+            ? v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec })
+            : v.toFixed(dec);
+        });
+        if (t < 1) el._countTimer = setTimeout(tick, 16);
+      };
+      tick();
+    });
+  }
+  runCountUps(slides[current]);
+
+  // Agenda: number keys 1–9 open that story while the agenda slide is showing.
+  document.addEventListener("keydown", (e) => {
+    if (!slides[current] || slides[current].id !== "agenda") return;
+    if (!/^[1-9]$/.test(e.key)) return;
+    const link = slides[current].querySelectorAll(".ag-link")[Number(e.key) - 1];
+    if (link) link.click();
+  });
 
   // ── Interactive people sections (index.html) ──
   // [data-goto="<slide id>"] jumps to that slide (guest wall + guest name switcher).
@@ -85,10 +167,10 @@
       }
       return;
     }
-    const card = e.target.closest(".stu-spotlight .stu-card");
+    const card = e.target.closest(".stu-spotlight .stu-card, .oc-spotlight .stat-card");
     if (!card) return;
     const on = !card.classList.contains("is-spot");
-    card.parentElement.querySelectorAll(".stu-card").forEach((c) => {
+    card.parentElement.querySelectorAll(":scope > *").forEach((c) => {
       c.classList.toggle("is-spot", on && c === card);
       c.classList.toggle("is-dim", on && c !== card);
     });
@@ -746,5 +828,36 @@
       });
       obs.observe(slide, { attributes: true, attributeFilter: ["class"] });
     }
+  })();
+
+  // ── "Deck updated" prompt ──
+  // Never reloads by itself (that would jump a presenter back to the title slide);
+  // it shows a small Refresh button instead. Skipped when opened from disk.
+  (function watchForUpdates() {
+    if (!LOADED_VERSION || location.protocol === "file:" || !window.fetch) return;
+    let shown = false;
+    const check = () => {
+      if (shown || document.hidden) return;
+      fetch("version.txt?t=" + Date.now(), { cache: "no-store" })
+        .then((r) => (r.ok ? r.text() : ""))
+        .then((latest) => {
+          latest = latest.trim();
+          if (!latest || latest === LOADED_VERSION || shown) return;
+          shown = true;
+          const bar = document.createElement("div");
+          bar.id = "ah-update";
+          bar.innerHTML =
+            "<span>The deck has been updated</span>" +
+            '<button type="button" class="ah-update-go">Refresh</button>' +
+            '<button type="button" class="ah-update-close" aria-label="Dismiss">&times;</button>';
+          bar.querySelector(".ah-update-go").addEventListener("click", () => location.reload());
+          bar.querySelector(".ah-update-close").addEventListener("click", () => bar.remove());
+          document.body.appendChild(bar);
+        })
+        .catch(() => {});
+    };
+    setInterval(check, 60000);
+    document.addEventListener("visibilitychange", check);
+    setTimeout(check, 5000);
   })();
 })();
