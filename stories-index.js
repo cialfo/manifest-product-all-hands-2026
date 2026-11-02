@@ -13,6 +13,52 @@
 window.STORIES = [
   // ── Active stories (default order) ──────────────────────────────────────────
   {
+    id: "applications",
+    file: "story-18-applications.html",
+    title: "Cialfo Applications Page",
+    author: "Maitreyi Garg",
+    section: "Cialfo",
+    dateAdded: "2026-11-02",
+    dateUpdated: "2026-11-02",
+  },
+  {
+    id: "ukdaops",
+    file: "story-19-ukdaops.html",
+    title: "UK-DA Ops Automations",
+    author: "Sachin Singh",
+    section: "Cialfo",
+    dateAdded: "2026-11-02",
+    dateUpdated: "2026-11-02",
+  },
+  {
+    id: "buvisits",
+    file: "story-20-buvisits.html",
+    title: "BU Visits",
+    author: "Lakshya Kanungo",
+    section: "BridgeU",
+    dateAdded: "2026-11-02",
+    dateUpdated: "2026-11-02",
+  },
+  {
+    id: "shortlist",
+    file: "story-21-shortlist.html",
+    title: "FlowAI Shortlist",
+    author: "Aditya Yadav",
+    section: "FlowAI",
+    dateAdded: "2026-11-02",
+    dateUpdated: "2026-11-02",
+  },
+  {
+    id: "bugreporter",
+    file: "story-22-bugreporter.html",
+    title: "Cialfo Bug Reporter",
+    author: "Saransh Mishra",
+    section: "Cialfo",
+    dateAdded: "2026-11-02",
+    dateUpdated: "2026-11-02",
+  },
+  // ── Previous months (hidden from the agenda) ────────────────────────────────
+  {
     id: "careers",
     file: "story-17-careers.html",
     title: "Career Outcomes & Jobs",
@@ -20,6 +66,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-09-30",
     dateUpdated: "2026-10-05",
+    comingSoon: true,
   },
   {
     id: "ainotes",
@@ -29,6 +76,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-09-30",
     dateUpdated: "2026-10-06",
+    comingSoon: true,
   },
   {
     id: "cdocsrevamp",
@@ -38,6 +86,7 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-09-30",
     dateUpdated: "2026-10-06",
+    comingSoon: true,
   },
   {
     id: "saigevoice",
@@ -47,8 +96,8 @@ window.STORIES = [
     section: "Cialfo",
     dateAdded: "2026-09-30",
     dateUpdated: "2026-10-06",
+    comingSoon: true,
   },
-  // ── Previous months (hidden from the agenda) ────────────────────────────────
   {
     id: "ccuintel",
     file: "story-06-ccuintel.html",
@@ -176,13 +225,13 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = false;
-const AH26_LOCKED_ORDER = ["careers", "ainotes", "cdocsrevamp", "saigevoice"];
+const AH26_LOCKED_ORDER = ["applications", "ukdaops", "buvisits", "shortlist", "bugreporter"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
 window.AH26 = window.AH26 || {};
 
-window.AH26.LOCALSTORAGE_KEY = "ah26_agenda_sep";
+window.AH26.LOCALSTORAGE_KEY = "ah26_agenda_oct";
 
 // Read the user's saved config, filling in defaults from STORIES.
 window.AH26.loadConfig = function () {
