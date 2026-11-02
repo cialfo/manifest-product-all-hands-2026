@@ -16,7 +16,7 @@
           document.documentElement.classList.add("theme-light");
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261102e" />
+    <link rel="stylesheet" href="styles.css?v=20261102f" />
     <style>
       .ag-grid-v2 .ag-link:last-child:nth-child(3n+1) { grid-column: 3 / span 2; }
       .ag-grid-v2 .ag-link:nth-child(3n+1):nth-last-child(2) { grid-column: 2 / span 2; }
@@ -605,8 +605,8 @@
     <div id="slide-count"></div>
     <div id="hint">&#8592; &#8594; arrow keys to navigate</div>
 
-    <script src="stories-index.js?v=20261102e"></script>
-    <script src="app.js?v=20261102e"></script>
+    <script src="stories-index.js?v=20261102f"></script>
+    <script src="app.js?v=20261102f"></script>
     <script>
       // Render the agenda grid from window.STORIES + saved config.
       // Stories appear in the user's configured order; section labels are
@@ -649,9 +649,20 @@
         grid.innerHTML = parts.join("");
       })();
 
-      if (location.hash === "#agenda" && typeof goTo === "function") {
-        goTo(typeof agendaIndex === "function" ? agendaIndex() : 1);
-      }
+      // The deck always opens on the October title slide. #agenda is honoured only
+      // when returning from a story's "What We're Building" button.
+      (function openingSlide() {
+        let fromStory = false;
+        try {
+          fromStory = sessionStorage.getItem("ah26_agenda_return") === "1";
+          sessionStorage.removeItem("ah26_agenda_return");
+        } catch (e) {}
+        if (location.hash === "#agenda" && fromStory && typeof goTo === "function") {
+          goTo(typeof agendaIndex === "function" ? agendaIndex() : 1);
+        } else if (location.hash) {
+          try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+        }
+      })();
     </script>
   </body>
 </html>
