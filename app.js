@@ -572,6 +572,7 @@
       Nistha: "Nistha-Kaushal.png",
       Aditya: "Aditya-semwal.png",
       "Aditya Semwal": "Aditya-semwal.png",
+      "Aditya Yadav": "aditya-yadav.png",
       "Aditya Ruhela": "Aditya-R.png",
       "Tarun Negi": "Tarun-Negi.png",
       Mobin: "Mobin-V.png",
