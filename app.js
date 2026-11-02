@@ -397,6 +397,13 @@
     const btnBase =
       "position:fixed;top:15px;z-index:200;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-muted);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--neutral-panel-hi);border-radius:8px;background:var(--nav-surface);backdrop-filter:blur(8px);transition:all .2s;font-family:'Montserrat',sans-serif";
 
+    // Mark in-deck returns to the agenda, so index.html only honours #agenda
+    // when it comes from a story button (a shared #agenda link opens on the title).
+    const markAgendaReturn = (a) =>
+      a.addEventListener("click", () => {
+        try { sessionStorage.setItem("ah26_agenda_return", "1"); } catch (e) {}
+      });
+
     if (backHref) {
       const back = document.createElement("a");
       back.href = backHref;
@@ -412,11 +419,13 @@
         back.style.color = "var(--text-muted)";
         back.style.background = "var(--nav-surface)";
       });
+      markAgendaReturn(back);
       document.body.appendChild(back);
     }
     if (nextHref) {
       const next = document.createElement("a");
       next.href = nextHref;
+      if (/#agenda$/.test(nextHref)) markAgendaReturn(next);
       next.style.cssText = btnBase + ";right:20px";
       const label =
         /index\.html$/.test(nextHref) && !/#/.test(nextHref) ? "Back to Start" : "Next Story";
