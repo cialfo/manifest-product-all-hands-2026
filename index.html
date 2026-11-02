@@ -16,7 +16,7 @@
           document.documentElement.classList.add("theme-light");
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261102f" />
+    <link rel="stylesheet" href="styles.css?v=20261102g" />
     <style>
       .ag-grid-v2 .ag-link:last-child:nth-child(3n+1) { grid-column: 3 / span 2; }
       .ag-grid-v2 .ag-link:nth-child(3n+1):nth-last-child(2) { grid-column: 2 / span 2; }
@@ -228,21 +228,36 @@
       <div class="slide">
         <div class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
           <div class="dots"></div>
-          <div class="ocx-wrap">
-            <img src="Assets/Manifest-Global--Horizontal-Logo-SVG.png" alt="Manifest Global" class="ocx-logo" />
-            <div class="ocx-card">
-              <div class="ocx-title">Welcoming Our <em>Special Guests</em></div>
-              <div class="ocx-rule"></div>
-              <div class="ocx-quote">
-                We&#8217;re delighted to have our special guests join us today.
-              </div>
+          <div class="gw-wrap">
+            <div class="gw-head">
+              <div class="gw-title">Welcoming Our <em>Special Guests</em></div>
+              <div class="gw-rule"></div>
+              <div class="gw-sub">We&#8217;re delighted to have our special guests join us today.</div>
             </div>
+            <div class="gw-row">
+              <button type="button" class="gw-card" data-goto="guest-maxim">
+                <span class="gw-photo"><img src="Assets/people/maxim-lobo.png" alt="Maxim Lobo" /></span>
+                <span class="gw-name">Maxim Lobo</span>
+                <span class="gw-org">Greenwood High International</span>
+              </button>
+              <button type="button" class="gw-card" data-goto="guest-susmita">
+                <span class="gw-photo"><img src="Assets/people/susmita-bharadwaj.png" alt="Susmita Bharadwaj" /></span>
+                <span class="gw-name">Susmita Bharadwaj</span>
+                <span class="gw-org">Oakridge International School</span>
+              </button>
+              <button type="button" class="gw-card" data-goto="guest-nidhi">
+                <span class="gw-photo"><img src="Assets/people/nidhi-sehgal.png" alt="Nidhi Sehgal" /></span>
+                <span class="gw-name">Nidhi Sehgal</span>
+                <span class="gw-org">Sreenidhi International School</span>
+              </button>
+            </div>
+            <div class="gw-hint">Click a guest to meet them</div>
           </div>
         </div>
       </div>
 
       <!-- GUEST 2: MAXIM LOBO -->
-      <div class="slide">
+      <div class="slide" id="guest-maxim">
         <div class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
           <div class="dots"></div>
           <div class="guest-wrap">
@@ -265,6 +280,11 @@
                   for Theory of Knowledge and Spanish Ab initio &#8212; bringing deep expertise in university
                   guidance, international curricula and global education pathways.
                 </div>
+                <div class="guest-nav" aria-label="Special guests">
+                  <button type="button" class="guest-nav-item is-current" data-goto="guest-maxim">Maxim Lobo</button>
+                  <button type="button" class="guest-nav-item" data-goto="guest-susmita">Susmita Bharadwaj</button>
+                  <button type="button" class="guest-nav-item" data-goto="guest-nidhi">Nidhi Sehgal</button>
+                </div>
               </div>
             </div>
           </div>
@@ -272,7 +292,7 @@
       </div>
 
       <!-- GUEST 3: SUSMITA BHARADWAJ -->
-      <div class="slide">
+      <div class="slide" id="guest-susmita">
         <div class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
           <div class="dots"></div>
           <div class="guest-wrap">
@@ -291,6 +311,11 @@
                   Northumbria University (2011&#8211;2013) and as a Career Counselor at Kshepani Career
                   Solutions, with earlier roles at Unisys, Dell and GE Capital International Services.
                 </div>
+                <div class="guest-nav" aria-label="Special guests">
+                  <button type="button" class="guest-nav-item" data-goto="guest-maxim">Maxim Lobo</button>
+                  <button type="button" class="guest-nav-item is-current" data-goto="guest-susmita">Susmita Bharadwaj</button>
+                  <button type="button" class="guest-nav-item" data-goto="guest-nidhi">Nidhi Sehgal</button>
+                </div>
               </div>
             </div>
           </div>
@@ -298,7 +323,7 @@
       </div>
 
       <!-- GUEST 4: NIDHI SEHGAL -->
-      <div class="slide">
+      <div class="slide" id="guest-nidhi">
         <div class="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
           <div class="dots"></div>
           <div class="guest-wrap">
@@ -318,6 +343,11 @@
                   leadership. Has held leadership roles at reputed international schools and is an IB examiner
                   for Theory of Knowledge and Spanish Ab initio &#8212; bringing strong expertise in global
                   education pathways and holistic student development.
+                </div>
+                <div class="guest-nav" aria-label="Special guests">
+                  <button type="button" class="guest-nav-item" data-goto="guest-maxim">Maxim Lobo</button>
+                  <button type="button" class="guest-nav-item" data-goto="guest-susmita">Susmita Bharadwaj</button>
+                  <button type="button" class="guest-nav-item is-current" data-goto="guest-nidhi">Nidhi Sehgal</button>
                 </div>
               </div>
             </div>
@@ -351,7 +381,7 @@
               <div class="stu-kicker">Saige Founders Internship</div>
               <div class="stu-title">Meet our <em>student founders</em></div>
             </div>
-            <div class="stu-grid">
+            <div class="stu-grid stu-spotlight">
               <div class="stu-card">
                 <div class="stu-photo">
                   <img src="Assets/people/ehan-kh.png" alt="Ehan KH" />
@@ -376,6 +406,7 @@
                 </div>
               </div>
             </div>
+            <div class="stu-hint">Click a card to spotlight it</div>
           </div>
         </div>
       </div>
@@ -406,7 +437,7 @@
               <div class="stu-kicker">Internal Team &middot; New Product Updates</div>
               <div class="stu-title">What changed <em>on the ground</em></div>
             </div>
-            <div class="stu-grid">
+            <div class="stu-grid stu-spotlight">
               <div class="stu-card">
                 <div class="stu-photo">
                   <img src="Assets/people/praful-kumar.png" alt="Praful Kumar" />
@@ -435,6 +466,7 @@
                 </div>
               </div>
             </div>
+            <div class="stu-hint">Click a card to spotlight it</div>
           </div>
         </div>
       </div>
@@ -605,8 +637,8 @@
     <div id="slide-count"></div>
     <div id="hint">&#8592; &#8594; arrow keys to navigate</div>
 
-    <script src="stories-index.js?v=20261102f"></script>
-    <script src="app.js?v=20261102f"></script>
+    <script src="stories-index.js?v=20261102g"></script>
+    <script src="app.js?v=20261102g"></script>
     <script>
       // Render the agenda grid from window.STORIES + saved config.
       // Stories appear in the user's configured order; section labels are
