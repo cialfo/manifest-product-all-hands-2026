@@ -61,4 +61,5 @@ Each slide story lives in a standalone `story-NN-slug.html` file. They share a c
 - HTML/CSS/JS is formatted by Prettier (`.prettierrc.json`). Run `npm run format` before committing.
 - HTML is validated by `html-validate` (`.htmlvalidate.json`). Run `npm run lint:html`.
 - `npm run lint` runs both.
+- **Cache-busting:** when you bump the `?v=` query on `styles.css` / `stories-index.js` / `app.js`, write the same value to `version.txt`. Open tabs poll `version.txt` and show a "The deck has been updated · Refresh" prompt when it changes.
 - Branch protection requires changes to land via PR. See `.github/pull_request_template.md`.
