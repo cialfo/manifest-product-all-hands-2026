@@ -60,7 +60,7 @@ window.STORIES = [
     section: "Cialfo",
     tagline: "Show us, don't tell us",
     dateAdded: "2026-11-02",
-    dateUpdated: "2026-11-02",
+    dateUpdated: "2026-11-03",
   },
 ];
 
