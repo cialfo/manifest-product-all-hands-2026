@@ -67,7 +67,7 @@
     slides[current].classList.add("active");
     updateChrome();
     restartAnimations();
-    if (slides[current].querySelector(".people-slide")) launchConfetti();
+    if (slides[current].querySelector(".people-slide, .confetti-slide")) launchConfetti();
   }
   window.goTo = goTo;
 
@@ -79,7 +79,7 @@
   const confetti = { pieces: [], frame: null, canvas: null, ctx: null, W: 0, H: 0 };
 
   function onPeopleSlide() {
-    return !!(slides[current] && slides[current].querySelector(".people-slide"));
+    return !!(slides[current] && slides[current].querySelector(".people-slide, .confetti-slide"));
   }
   function confettiResize() {
     const dpr = window.devicePixelRatio || 1;
