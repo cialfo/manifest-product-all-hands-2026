@@ -2030,8 +2030,7 @@ html.theme-light .polaroid {
 
 /* ═══════════════════════════════════════════════════════════════════
    SAIGE FOUNDERS INTERNSHIP — student voices (index.html)
-   Two polaroid student cards side by side; confetti comes from
-   .confetti-slide via app.js.
+   Two polaroid student cards side by side.
    ═══════════════════════════════════════════════════════════════════ */
 .stu-wrap {
   position: relative;
@@ -2143,18 +2142,6 @@ html.theme-light .polaroid {
   font-size: 15px;
   line-height: 1.6;
   color: var(--text-body);
-}
-.stu-tag {
-  align-self: flex-start;
-  margin-top: 0.4rem;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-primary);
-  padding: 0.35rem 0.85rem;
-  border: 1.5px solid rgba(var(--accent-rgb), 0.45);
-  border-radius: 999px;
-  background: rgba(var(--accent-rgb), 0.1);
 }
 .stu-tbc {
   font-style: italic;
