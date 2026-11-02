@@ -2147,3 +2147,411 @@ html.theme-light .polaroid {
   font-style: italic;
   color: var(--text-secondary);
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   INTERACTIVE PEOPLE SECTIONS — guest wall, guest profiles, spotlight
+   cards and section openers (index.html). Slides are display:none when
+   inactive, so every entrance animation replays when a slide opens.
+   ═══════════════════════════════════════════════════════════════════ */
+@keyframes ah-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ah-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes ah-drop {
+  from { opacity: 0; transform: translateY(-60px) rotate(var(--tilt-from, -14deg)); }
+  70% { opacity: 1; transform: translateY(6px) rotate(var(--tilt-to, -2deg)); }
+  to { opacity: 1; transform: translateY(0) rotate(var(--tilt-to, -2deg)); }
+}
+@keyframes ah-in-left {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes ah-in-right {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes ah-pop {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ── Guest wall (welcome slide) ── */
+.gw-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 2rem;
+  text-align: center;
+}
+.gw-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gw-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.02;
+  color: var(--text-primary);
+  opacity: 0;
+  animation: ah-rise 0.7s ease forwards;
+  animation-delay: 0.1s;
+}
+.gw-title em {
+  color: var(--accent);
+  font-style: normal;
+}
+.gw-rule {
+  margin-top: 1.1rem;
+  width: 72px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  animation: ah-grow 0.6s ease forwards;
+  animation-delay: 0.45s;
+}
+.gw-sub {
+  margin-top: 1rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: ah-rise 0.6s ease forwards;
+  animation-delay: 0.6s;
+}
+.gw-row {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+}
+.gw-card {
+  --tilt-from: -16deg;
+  --tilt-to: -4deg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+  padding: 11px 11px 14px;
+  border: 0;
+  background: #fffdf4;
+  box-shadow:
+    0 8px 24px rgba(80, 50, 0, 0.18),
+    0 1px 3px rgba(80, 50, 0, 0.12);
+  cursor: pointer;
+  font: inherit;
+  opacity: 0;
+  animation: ah-drop 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation-delay: 0.85s;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.gw-card:nth-child(2) {
+  --tilt-from: 10deg;
+  --tilt-to: 2deg;
+  margin-top: 1.4rem;
+  animation-delay: 1.05s;
+}
+.gw-card:nth-child(3) {
+  --tilt-from: -8deg;
+  --tilt-to: -1.5deg;
+  animation-delay: 1.25s;
+}
+.gw-card:hover,
+.gw-card:focus-visible {
+  transform: translateY(-10px) rotate(0deg) scale(1.04) !important;
+  box-shadow:
+    0 18px 36px rgba(80, 50, 0, 0.26),
+    0 2px 6px rgba(80, 50, 0, 0.14);
+  outline: none;
+}
+.gw-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.gw-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gw-card:hover .gw-photo img {
+  transform: scale(1.06);
+}
+.gw-name {
+  margin-top: 0.7rem;
+  font-family: "Caveat", "Cormorant Garamond", cursive;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  color: #1a1a1a;
+}
+.gw-org {
+  margin-top: 0.3rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(20, 20, 20, 0.6);
+}
+.gw-hint,
+.stu-hint {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: ah-rise 0.6s ease forwards;
+  animation-delay: 1.7s;
+}
+
+/* ── Guest profile slides: choreographed reveal ── */
+.guest-card {
+  position: relative;
+  overflow: hidden;
+  animation: ah-pop 0.6s ease forwards;
+  animation-delay: 0.1s;
+}
+.guest-card::before {
+  content: "\201C";
+  position: absolute;
+  top: -1.6rem;
+  right: 2.2rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 260px;
+  line-height: 1;
+  color: rgba(var(--accent-rgb), 0.08);
+  pointer-events: none;
+}
+.guest-photo {
+  --tilt-from: -14deg;
+  --tilt-to: -2deg;
+  opacity: 0;
+  animation: ah-drop 0.85s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation-delay: 0.3s;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.guest-photo:hover {
+  transform: rotate(0deg) scale(1.03) !important;
+  box-shadow:
+    0 16px 34px rgba(80, 50, 0, 0.26),
+    0 2px 6px rgba(80, 50, 0, 0.14);
+}
+.guest-photo img {
+  transition: transform 0.5s ease;
+}
+.guest-photo:hover img {
+  transform: scale(1.04);
+}
+.guest-body > * {
+  opacity: 0;
+  animation: ah-rise 0.55s ease forwards;
+}
+.guest-body > :nth-child(1) { animation-delay: 0.55s; }
+.guest-body > :nth-child(2) { animation-delay: 0.7s; }
+.guest-body > :nth-child(3) { animation-delay: 0.85s; }
+.guest-body > :nth-child(4) { animation-delay: 0.95s; }
+.guest-body > :nth-child(5) { animation-delay: 1.1s; }
+.guest-body > :nth-child(6) { animation-delay: 1.35s; }
+.guest-name {
+  position: relative;
+  padding-bottom: 0.55rem;
+}
+.guest-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ah-grow 0.6s ease forwards;
+  animation-delay: 1s;
+}
+.guest-nav {
+  margin-top: 0.7rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(var(--accent-rgb), 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3rem;
+}
+.guest-nav-item {
+  position: relative;
+  border: 0;
+  background: none;
+  padding: 0 0 4px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+.guest-nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+}
+.guest-nav-item:hover,
+.guest-nav-item.is-current {
+  color: var(--accent);
+}
+.guest-nav-item:hover::after,
+.guest-nav-item.is-current::after {
+  transform: scaleX(1);
+}
+
+/* ── Student / team cards: slide in, lift, spotlight ── */
+.stu-header > * {
+  opacity: 0;
+  animation: ah-rise 0.6s ease forwards;
+}
+.stu-header > :nth-child(1) { animation-delay: 0.1s; }
+.stu-header > :nth-child(2) { animation-delay: 0.25s; }
+.stu-card {
+  cursor: pointer;
+  animation-name: ah-in-left;
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.3, 1);
+  animation-delay: 0.45s;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.stu-card:nth-child(2) {
+  animation-name: ah-in-right;
+  animation-delay: 0.65s;
+}
+.stu-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 16px 34px rgba(80, 50, 0, 0.12);
+}
+.stu-photo {
+  --tilt-from: -14deg;
+  --tilt-to: -3deg;
+  opacity: 0;
+  animation: ah-drop 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation-delay: 0.85s;
+  transition: transform 0.3s ease;
+}
+.stu-card:nth-child(2) .stu-photo {
+  --tilt-from: 12deg;
+  --tilt-to: 2.5deg;
+  animation-delay: 1.05s;
+}
+.stu-card:hover .stu-photo {
+  transform: rotate(0deg) scale(1.04) !important;
+}
+.stu-name {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+.stu-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: ah-grow 0.6s ease forwards;
+  animation-delay: 1.2s;
+}
+.stu-card:nth-child(2) .stu-name::after {
+  animation-delay: 1.4s;
+}
+.stu-card.is-spot {
+  transform: scale(1.05) !important;
+  border-color: rgba(var(--accent-rgb), 0.7);
+  background: rgba(var(--accent-rgb), 0.08);
+  box-shadow: 0 20px 44px rgba(80, 50, 0, 0.16);
+  z-index: 2;
+}
+.stu-card.is-dim {
+  opacity: 0.4 !important;
+  transform: scale(0.96) !important;
+}
+.stu-hint {
+  margin-top: -0.4rem;
+}
+
+/* ── Section openers: smoother reveal ── */
+.ocx-logo {
+  opacity: 0;
+  animation: ah-rise 0.6s ease forwards;
+}
+.ocx-card {
+  opacity: 0;
+  animation: ah-pop 0.6s ease forwards;
+  animation-delay: 0.15s;
+}
+.ocx-title {
+  opacity: 0;
+  animation: ah-rise 0.7s ease forwards;
+  animation-delay: 0.35s;
+}
+.ocx-rule {
+  transform: scaleX(0);
+  animation: ah-grow 0.6s ease forwards;
+  animation-delay: 0.75s;
+}
+.ocx-quote {
+  opacity: 0;
+  animation: ah-rise 0.6s ease forwards;
+  animation-delay: 0.95s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gw-wrap *,
+  .guest-card,
+  .guest-card *,
+  .stu-wrap *,
+  .ocx-wrap * {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .gw-rule,
+  .ocx-rule,
+  .guest-name::after,
+  .stu-name::after {
+    transform: none !important;
+  }
+}

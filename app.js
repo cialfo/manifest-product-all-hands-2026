@@ -68,8 +68,31 @@
     updateChrome();
     restartAnimations();
     if (slides[current].querySelector(".people-slide")) launchConfetti();
+    document
+      .querySelectorAll(".stu-card.is-spot, .stu-card.is-dim")
+      .forEach((c) => c.classList.remove("is-spot", "is-dim"));
   }
   window.goTo = goTo;
+
+  // ── Interactive people sections (index.html) ──
+  // [data-goto="<slide id>"] jumps to that slide (guest wall + guest name switcher).
+  // Clicking a card in a .stu-spotlight grid spotlights it; click again to reset.
+  document.addEventListener("click", (e) => {
+    const jump = e.target.closest("[data-goto]");
+    if (jump) {
+      for (let i = 0; i < slides.length; i++) {
+        if (slides[i].id === jump.dataset.goto) return goTo(i);
+      }
+      return;
+    }
+    const card = e.target.closest(".stu-spotlight .stu-card");
+    if (!card) return;
+    const on = !card.classList.contains("is-spot");
+    card.parentElement.querySelectorAll(".stu-card").forEach((c) => {
+      c.classList.toggle("is-spot", on && c === card);
+      c.classList.toggle("is-dim", on && c !== card);
+    });
+  });
 
   // ── Confetti for the "Celebrating our people" slides ──
   // Bursts from the bottom corners, plus rain across the whole screen that keeps
