@@ -573,6 +573,8 @@
       Aditya: "Aditya-semwal.png",
       "Aditya Semwal": "Aditya-semwal.png",
       "Aditya Yadav": "aditya-yadav.png",
+      Gaurab: "gaurab.png",
+      Rageshree: "rageshree.png",
       "Aditya Ruhela": "Aditya-R.png",
       "Tarun Negi": "Tarun-Negi.png",
       Mobin: "Mobin-V.png",
