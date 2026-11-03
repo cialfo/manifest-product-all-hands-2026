@@ -3133,3 +3133,12 @@ video {
   z-index: 1;
   transform: translateY(-4px) scale(1.12);
 }
+
+/* Agenda with exactly four stories: a balanced 2 × 2 grid instead of 3 + 1. */
+.ag-grid-v2:has(> .ag-link:nth-child(4):last-child) {
+  grid-template-columns: repeat(4, 1fr);
+  width: min(820px, 94%);
+}
+.ag-grid-v2:has(> .ag-link:nth-child(4):last-child) .ag-link {
+  grid-column: span 2 !important;
+}
