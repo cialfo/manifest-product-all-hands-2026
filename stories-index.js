@@ -30,7 +30,7 @@ window.STORIES = [
     section: "Cialfo",
     tagline: "Automating the operation",
     dateAdded: "2026-11-02",
-    dateUpdated: "2026-11-02",
+    dateUpdated: "2026-11-03",
   },
   {
     id: "buvisits",
