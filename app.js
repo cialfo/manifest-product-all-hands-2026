@@ -177,8 +177,8 @@
   });
 
   // ── Confetti for the "Celebrating our people" slides ──
-  // Bursts from the bottom corners, plus rain across the whole screen that keeps
-  // falling for as long as a people slide is showing. Plain canvas, no dependency.
+  // One burst from the bottom corners when a people slide opens; it falls away
+  // and stops on its own. Plain canvas, no dependency.
   // Skipped when the viewer prefers reduced motion.
   const CONFETTI_COLORS = ["#d0021b", "#e8524a", "#f5a623", "#f8e71c", "#7ed321", "#4a90e2", "#bd10e0"];
   const confetti = { pieces: [], frame: null, canvas: null, ctx: null, W: 0, H: 0 };
@@ -206,16 +206,6 @@
       extra
     );
   }
-  function rainPiece(y) {
-    return confettiPiece({
-      rain: true,
-      x: Math.random() * confetti.W,
-      y: y,
-      vx: (Math.random() - 0.5) * 3,
-      vy: 2 + Math.random() * 4,
-    });
-  }
-
   function launchConfetti() {
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!confetti.canvas) {
@@ -228,7 +218,7 @@
     confettiResize();
     const { W, H } = confetti;
 
-    // Corner bursts every time (slide opened, or "Shuffle the wall").
+    // One corner burst per slide visit (or "Shuffle the wall").
     for (let side = 0; side < 2; side++) {
       for (let i = 0; i < 200; i++) {
         const angle = (side === 0 ? -60 : -120) + (Math.random() * 30 - 15);
@@ -239,23 +229,19 @@
         );
       }
     }
-    // Start the continuous rain once.
-    if (!confetti.pieces.some((p) => p.rain)) {
-      for (let i = 0; i < 500; i++) confetti.pieces.push(rainPiece(-20 - Math.random() * H * 1.6));
-    }
     if (!confetti.frame) {
       confetti.fade = 1;
       confetti.frame = requestAnimationFrame(confettiFrame);
     }
   }
 
-  function confettiFrame(now) {
+  function confettiFrame() {
     const { ctx, W, H } = confetti;
     const showing = onPeopleSlide();
     // Fade out quickly once we leave the people slide, then stop.
     confetti.fade = showing ? 1 : confetti.fade - 0.06;
     ctx.clearRect(0, 0, W, H);
-    if (confetti.fade <= 0) {
+    if (confetti.fade <= 0 || !confetti.pieces.length) {
       confetti.pieces = [];
       confetti.frame = null;
       return;
@@ -263,22 +249,13 @@
     ctx.globalAlpha = confetti.fade;
     const next = [];
     for (const p of confetti.pieces) {
-      if (p.rain) {
-        p.vy = Math.min(p.vy + 0.05, 6);
-        p.vx += Math.sin(now / 400 + p.rot) * 0.05;
-      } else {
-        p.vy += 0.28;
-        p.vx *= 0.99;
-        p.vy *= 0.99;
-      }
+      p.vy += 0.28;
+      p.vx *= 0.99;
+      p.vy *= 0.99;
       p.x += p.vx;
       p.y += p.vy;
       p.rot += p.vr;
-      if (p.y > H + 30) {
-        // Rain loops back to the top; burst pieces are done.
-        if (p.rain) next.push(rainPiece(-20 - Math.random() * 80));
-        continue;
-      }
+      if (p.y > H + 30) continue;
       next.push(p);
       ctx.save();
       ctx.translate(p.x, p.y);
