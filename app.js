@@ -177,11 +177,12 @@
   });
 
   // ── Confetti for the "Celebrating our people" slides ──
-  // One burst from the bottom corners when a people slide opens; it falls away
-  // and stops on its own. Plain canvas, no dependency.
-  // Skipped when the viewer prefers reduced motion.
+  // One pop all over the screen when a people slide opens: bursts from points
+  // spread across the viewport, fading out to nothing at exactly 2 seconds.
+  // Plain canvas, no dependency. Skipped when the viewer prefers reduced motion.
   const CONFETTI_COLORS = ["#d0021b", "#e8524a", "#f5a623", "#f8e71c", "#7ed321", "#4a90e2", "#bd10e0"];
-  const confetti = { pieces: [], frame: null, canvas: null, ctx: null, W: 0, H: 0 };
+  const CONFETTI_MS = 2000;
+  const confetti = { pieces: [], frame: null, canvas: null, ctx: null, W: 0, H: 0, start: 0 };
 
   function onPeopleSlide() {
     return !!(slides[current] && slides[current].querySelector(".people-slide"));
@@ -194,18 +195,7 @@
     confetti.canvas.height = confetti.H * dpr;
     confetti.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  function confettiPiece(extra) {
-    return Object.assign(
-      {
-        w: 6 + Math.random() * 6,
-        h: 8 + Math.random() * 8,
-        rot: Math.random() * Math.PI,
-        vr: (Math.random() - 0.5) * 0.3,
-        color: CONFETTI_COLORS[(Math.random() * CONFETTI_COLORS.length) | 0],
-      },
-      extra
-    );
-  }
+
   function launchConfetti() {
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!confetti.canvas) {
@@ -218,45 +208,54 @@
     confettiResize();
     const { W, H } = confetti;
 
-    // One corner burst per slide visit (or "Shuffle the wall").
-    for (let side = 0; side < 2; side++) {
-      for (let i = 0; i < 200; i++) {
-        const angle = (side === 0 ? -60 : -120) + (Math.random() * 30 - 15);
-        const speed = 9 + Math.random() * 9;
-        const rad = (angle * Math.PI) / 180;
-        confetti.pieces.push(
-          confettiPiece({ x: side === 0 ? 0 : W, y: H * 0.85, vx: Math.cos(rad) * speed, vy: Math.sin(rad) * speed })
-        );
+    // ~14 pop points on a loose grid so the whole screen is covered.
+    confetti.pieces = [];
+    const cols = 5;
+    const rows = 3;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const ox = ((c + 0.5 + (Math.random() - 0.5) * 0.6) / cols) * W;
+        const oy = ((r + 0.5 + (Math.random() - 0.5) * 0.6) / rows) * H;
+        for (let i = 0; i < 38; i++) {
+          const ang = Math.random() * Math.PI * 2;
+          const speed = 3 + Math.random() * 7;
+          confetti.pieces.push({
+            x: ox,
+            y: oy,
+            vx: Math.cos(ang) * speed,
+            vy: Math.sin(ang) * speed - 2,
+            w: 6 + Math.random() * 6,
+            h: 8 + Math.random() * 8,
+            rot: Math.random() * Math.PI,
+            vr: (Math.random() - 0.5) * 0.3,
+            color: CONFETTI_COLORS[(Math.random() * CONFETTI_COLORS.length) | 0],
+          });
+        }
       }
     }
-    if (!confetti.frame) {
-      confetti.fade = 1;
-      confetti.frame = requestAnimationFrame(confettiFrame);
-    }
+    confetti.start = performance.now();
+    if (!confetti.frame) confetti.frame = requestAnimationFrame(confettiFrame);
   }
 
-  function confettiFrame() {
+  function confettiFrame(now) {
     const { ctx, W, H } = confetti;
-    const showing = onPeopleSlide();
-    // Fade out quickly once we leave the people slide, then stop.
-    confetti.fade = showing ? 1 : confetti.fade - 0.06;
+    const elapsed = now - confetti.start;
     ctx.clearRect(0, 0, W, H);
-    if (confetti.fade <= 0 || !confetti.pieces.length) {
+    // Done after 2 s, or straight away if we left the people slide.
+    if (elapsed >= CONFETTI_MS || !onPeopleSlide()) {
       confetti.pieces = [];
       confetti.frame = null;
       return;
     }
-    ctx.globalAlpha = confetti.fade;
-    const next = [];
+    // Full strength for the first 1.3 s, then fade to nothing by 2 s.
+    ctx.globalAlpha = Math.min(1, Math.max(0, (CONFETTI_MS - elapsed) / 700));
     for (const p of confetti.pieces) {
-      p.vy += 0.28;
-      p.vx *= 0.99;
-      p.vy *= 0.99;
+      p.vy += 0.22;
+      p.vx *= 0.98;
+      p.vy *= 0.98;
       p.x += p.vx;
       p.y += p.vy;
       p.rot += p.vr;
-      if (p.y > H + 30) continue;
-      next.push(p);
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
@@ -264,7 +263,6 @@
       ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot * 2)));
       ctx.restore();
     }
-    confetti.pieces = next;
     confetti.frame = requestAnimationFrame(confettiFrame);
   }
   window.launchConfetti = launchConfetti;
