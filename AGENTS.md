@@ -61,5 +61,7 @@ Each slide story lives in a standalone `story-NN-slug.html` file. They share a c
 - HTML/CSS/JS is formatted by Prettier (`.prettierrc.json`). Run `npm run format` before committing.
 - HTML is validated by `html-validate` (`.htmlvalidate.json`). Run `npm run lint:html`.
 - `npm run lint` runs both.
+- **Performance:** deck pages (`index.html`, `story-*.html`) do **not** load the Tailwind Play CDN. The few utilities they use, plus Tailwind's base reset, are written out at the end of `styles.css`. If you use a new utility class on a deck page, add it there. Only `config.html` still loads the CDN.
+- **Photos:** people photos are WebP, 720 px max on the long edge (`Assets/people/*.webp`). Convert new photos the same way before referencing them; don't link multi-MB PNGs.
 - **Cache-busting:** when you bump the `?v=` query on `styles.css` / `stories-index.js` / `app.js`, write the same value to `version.txt`. Open tabs poll `version.txt` and show a "The deck has been updated · Refresh" prompt when it changes.
 - Branch protection requires changes to land via PR. See `.github/pull_request_template.md`.
