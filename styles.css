@@ -3116,3 +3116,20 @@ video {
   font-size: 13px;
   color: var(--text-secondary);
 }
+.sm-names {
+  margin-top: 3px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.sm-avatars img {
+  transition: transform 0.2s ease;
+}
+.sm-avatars img:hover {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-4px) scale(1.12);
+}
