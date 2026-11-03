@@ -3022,3 +3022,97 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PEOPLE SLIDE — "Special mentions" strip under the main polaroid wall
+   (story-18-applications.html). .has-mentions shrinks the wall to fit.
+   ═══════════════════════════════════════════════════════════════════ */
+.people-slide.has-mentions {
+  gap: 0.9rem;
+}
+.people-slide.has-mentions .people-grid .polaroid {
+  width: 190px;
+}
+.sm-wrap {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  opacity: 0;
+  animation: ah-rise 0.6s ease forwards;
+  animation-delay: 1.2s;
+}
+.sm-label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.sm-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.sm-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 330px;
+  padding: 0.75rem 1.2rem 0.75rem 0.85rem;
+  border: 1.5px solid rgba(var(--accent-rgb), 0.24);
+  border-radius: 14px;
+  background: rgba(var(--accent-rgb), 0.04);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+.sm-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(var(--accent-rgb), 0.5);
+}
+.sm-mark {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--accent-rgb), 0.12);
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.sm-avatars {
+  flex: 0 0 auto;
+  display: flex;
+}
+.sm-avatars img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fffdf4;
+  box-shadow: 0 2px 6px rgba(80, 50, 0, 0.18);
+}
+.sm-avatars img + img {
+  margin-left: -12px;
+}
+.sm-who {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+.sm-why {
+  margin-top: 2px;
+  font-family: "Literata", Georgia, serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
