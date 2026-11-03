@@ -637,7 +637,7 @@
       Rashash: "rashash.webp",
       Riya: "riya-goyal.webp",
       "Riya Goyal": "riya-goyal.webp",
-      Sachin: "sachin-kumar-singh.webp",
+      Sachin: "sachin-singh.webp",
       Sanya: "sanya-mandloi.webp",
       Saransh: "saransh-mishra.webp",
       "Shan Wang": "shan-wang.webp",
