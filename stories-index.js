@@ -43,16 +43,6 @@ window.STORIES = [
     dateUpdated: "2026-11-02",
   },
   {
-    id: "shortlist",
-    file: "story-21-shortlist.html",
-    title: "FlowAI Shortlist",
-    author: "Aditya Yadav",
-    section: "FlowAI",
-    tagline: "The first page a parent reads",
-    dateAdded: "2026-11-02",
-    dateUpdated: "2026-11-02",
-  },
-  {
     id: "bugreporter",
     file: "story-22-bugreporter.html",
     title: "Cialfo Bug Reporter",
@@ -67,7 +57,7 @@ window.STORIES = [
 // ── AGENDA LOCK ──────────────────────────────────────────────────────────────
 // Set to true to lock the agenda to a specific set of stories for presentation.
 const AH26_LOCKED = true;
-const AH26_LOCKED_ORDER = ["applications", "ukdaops", "buvisits", "shortlist", "bugreporter"];
+const AH26_LOCKED_ORDER = ["applications", "ukdaops", "buvisits", "bugreporter"];
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Helpers available everywhere stories-index.js is loaded.
