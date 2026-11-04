@@ -48,7 +48,7 @@ window.STORIES = [
     title: "Cialfo Bug Reporter",
     author: "Saransh Mishra",
     section: "Cialfo",
-    tagline: "Show us, don't tell us",
+    tagline: "No more \"can you describe it?\"",
     dateAdded: "2026-11-02",
     dateUpdated: "2026-11-04",
   },
