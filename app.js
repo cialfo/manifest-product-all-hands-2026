@@ -623,7 +623,7 @@
       "Khushboo S.": "khushboo-singh.webp",
       Khushnuma: "khushnuma.webp",
       "Mohit Mmangal": "mohit-mmangal.webp",
-      Narender: "narender-yadav.webp",
+      Narender: "narender-yadav-2.webp",
       Nasreen: "nasreen-gani.webp",
       "Nimisha Ojha": "nimisha-ojha.webp",
       Nitin: "nitin-kumar.webp",
