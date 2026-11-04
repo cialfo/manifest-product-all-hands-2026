@@ -3142,3 +3142,23 @@ video {
 .ag-grid-v2:has(> .ag-link:nth-child(4):last-child) .ag-link {
   grid-column: span 2 !important;
 }
+
+/* Student cards: home country line under the school */
+.stu-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.stu-country::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
