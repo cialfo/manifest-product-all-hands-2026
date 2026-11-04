@@ -3162,3 +3162,8 @@ video {
   border-radius: 50%;
   background: var(--accent);
 }
+
+/* Outcome board with exactly three tiles: one row of three instead of 2 + 1. */
+.oc-wrap .stat-grid:has(> .stat-card:nth-child(3):last-child) {
+  grid-template-columns: repeat(3, 1fr);
+}
