@@ -40,7 +40,7 @@ window.STORIES = [
     section: "BridgeU",
     tagline: "One engine, two brands",
     dateAdded: "2026-11-02",
-    dateUpdated: "2026-11-02",
+    dateUpdated: "2026-11-04",
   },
   {
     id: "bugreporter",
