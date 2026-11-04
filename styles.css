@@ -3167,3 +3167,11 @@ video {
 .oc-wrap .stat-grid:has(> .stat-card:nth-child(3):last-child) {
   grid-template-columns: repeat(3, 1fr);
 }
+
+/* Student card: preferred name in brackets after the full name */
+.stu-aka {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
